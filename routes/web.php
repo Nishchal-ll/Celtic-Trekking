@@ -60,17 +60,3 @@ Route::get('/temoignage', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
-
-Route::redirect('/admin', '/admin/login');
-
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::middleware('guest:admin')->group(function () {
-        Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-        Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
-    });
-
-    Route::middleware('auth:admin')->group(function () {
-        Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
-        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    });
-});

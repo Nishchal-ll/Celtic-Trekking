@@ -7,6 +7,8 @@
     --color-primary: #5090e2;
     --color-primary-dark: #3a7bd5;
     --color-primary-darker: #0c3688;
+    --color-navbar: #0c3688;
+    --color-navbar-text: #ffffff;
     --color-dark: #1a1a2e;
     --color-dark-gray: #333333;
     --color-medium-gray: #555555;
@@ -78,8 +80,8 @@ ul {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: var(--color-white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-navbar);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
     height: var(--header-height);
 }
 
@@ -99,8 +101,7 @@ ul {
 }
 
 .logo-img {
-    height: 50px;
-    width: auto;
+    height: 45px;
 }
 
 .logo-text {
@@ -110,19 +111,19 @@ ul {
 
 .logo-title {
     font-family: var(--font-heading);
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    color: var(--color-primary);
+    color: var(--color-navbar-text);
     letter-spacing: 2px;
     line-height: 1;
 }
 
 .logo-subtitle {
     font-family: var(--font-accent);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 400;
-    color: var(--color-medium-gray);
-    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.75);
+    letter-spacing: 2px;
     text-transform: lowercase;
     line-height: 1;
     margin-top: 2px;
@@ -141,12 +142,12 @@ ul {
 
 .nav-menu > li > a {
     font-family: var(--font-heading);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 700;
-    color: var(--color-dark-gray);
+    color: var(--color-navbar-text);
     text-transform: uppercase;
     letter-spacing: 1px;
-    padding: 10px 15px;
+    padding: 8px 15px;
     display: block;
     transition: var(--transition-base);
     position: relative;
@@ -154,7 +155,7 @@ ul {
 
 .nav-menu > li > a:hover,
 .nav-menu > li > a.active {
-    color: var(--color-primary);
+    color: #ffffff;
 }
 
 .nav-menu > li > a::after {
@@ -164,7 +165,7 @@ ul {
     left: 15px;
     right: 15px;
     height: 2px;
-    background-color: var(--color-primary);
+    background-color: rgba(255, 255, 255, 0.85);
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -235,7 +236,7 @@ ul {
 .hamburger-line {
     width: 28px;
     height: 3px;
-    background-color: var(--color-dark-gray);
+    background-color: var(--color-navbar-text);
     transition: var(--transition-base);
     border-radius: 2px;
 }
