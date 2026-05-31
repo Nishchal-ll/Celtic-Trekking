@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <meta name="description" content="Celtic Trekking c'est 20 ans d'expérience, des équipes locales compétentes et professionnelles pour vous accompagner : Népal, Tibet, Roumanie et Maroc.">
+    <meta name="google" content="notranslate">
+    <meta name="description" content="Celtic Trekking is 20 years of experience, with local professional teams to support you: Nepal, Tibet, Romania and Morocco.">
     <meta name="keywords" content="trek, népal, tibet, maroc, roumanie, randonnée, trekking, celtic trekking, everest, himalaya">
-    <title>@yield('title', 'Trek au Népal : Organisez treks et randonnées avec Celtic Trekking')</title>
+    <title>@yield('title', 'Nepal Trekking: Plan treks and hikes with Celtic Trekking')</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,8 +26,8 @@
 </head>
 <body>
 
-    <!-- Header / Navigation -->
-    @include('partials.header')
+    <!-- Navbar -->
+    @include('partials.navbar')
 
     <!-- Main Content -->
     <main>

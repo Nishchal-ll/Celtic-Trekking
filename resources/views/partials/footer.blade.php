@@ -1,7 +1,7 @@
 <!-- Footer -->
 <footer id="footer-outer" class="footer-outer">
     <div class="container footer-main">
-        <div class="footer-columns">
+        <div class="footer-grid">
             <!-- Column 1: Trekking -->
             <div class="footer-col">
                 <h4 class="footer-heading">TREKKING</h4>
@@ -15,32 +15,32 @@
 
             <!-- Column 2: Plan du site -->
             <div class="footer-col">
-                <h4 class="footer-heading">PLAN DU SITE</h4>
+                <h4 class="footer-heading">SITEMAP</h4>
                 <ul class="footer-links">
-                    <li><a href="{{ route('fixed-departures') }}">DÉPARTS FIXES</a></li>
-                    <li><a href="{{ route('agency') }}">AGENCE CELTIC TREKKING</a></li>
-                    <li><a href="{{ route('testimony') }}">NOS CLIENTS TÉMOIGNENT</a></li>
-                    <li><a href="{{ route('contact') }}">CONTACTEZ-NOUS</a></li>
+                    <li><a href="{{ route('fixed-departures') }}">FIXED DEPARTURES</a></li>
+                    <li><a href="{{ route('agency') }}">CELTIC TREKKING AGENCY</a></li>
+                    <li><a href="{{ route('testimony') }}">OUR CLIENTS TESTIFY</a></li>
+                    <li><a href="{{ route('contact') }}">CONTACT US</a></li>
                 </ul>
             </div>
 
-            <!-- Column 3: Partenaires -->
+            <!-- Column 3: Partners -->
             <div class="footer-col">
-                <h4 class="footer-heading">PARTENAIRES</h4>
+                <h4 class="footer-heading">PARTNERS</h4>
                 <ul class="footer-links">
                     <li><a href="#">GUIDE DU ROUTARD</a></li>
-                    <li><a href="#">NÉPAL MOUNTAINEERING</a></li>
-                    <li><a href="#">WELCOME NÉPAL</a></li>
-                    <li><a href="#">TREKKING AGENCIES NÉPAL</a></li>
+                    <li><a href="#">NEPAL MOUNTAINEERING</a></li>
+                    <li><a href="#">WELCOME NEPAL</a></li>
+                    <li><a href="#">TREKKING AGENCIES NEPAL</a></li>
                 </ul>
             </div>
 
-            <!-- Column 4: Partenaires (continued) -->
+            <!-- Column 4: Partners -->
             <div class="footer-col">
-                <h4 class="footer-heading">PARTENAIRES</h4>
+                <h4 class="footer-heading">PARTNERS</h4>
                 <ul class="footer-links">
-                    <li><a href="#">TRAVELING NÉPAL</a></li>
-                    <li><a href="#">LE YETI - MAGASIN SPÉCIALISÉ</a></li>
+                    <li><a href="#">TRAVELING NEPAL</a></li>
+                    <li><a href="#">LE YETI - SPECIALTY STORE</a></li>
                     <li><a href="#">PAULINES GUESTHOUSE</a></li>
                 </ul>
             </div>
@@ -48,7 +48,7 @@
     </div>
 
     <!-- Copyright Bar -->
-    <div class="footer-copyright">
+    <div class="footer-bottom">
         <div class="container">
             <p>&copy; 2022 - Celtic Trekking</p>
         </div>

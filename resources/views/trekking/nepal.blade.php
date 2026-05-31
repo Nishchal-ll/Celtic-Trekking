@@ -1,712 +1,26 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en" translate="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trekking au Népal – Celtic Trekking</title>
+<meta name="google" content="notranslate">
+<title>Nepal Trekking – Celtic Trekking</title>
 <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Lato', sans-serif;
-    background: #fff;
-    color: #333;
-  }
-
-  /* ===== NAVBAR ===== */
-  nav {
-    background-color: #1a2a4a;
-    padding: 0;
-    height: 64px;
-    position: relative;
-    z-index: 100;
-  }
-
-  .nav-inner {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-  }
-
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-  }
-
-  .nav-logo-icon { width: 42px; height: 42px; }
-
-  .nav-logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-  }
-
-  .nav-logo-text .brand {
-    font-family: 'PT Sans Narrow', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  .nav-logo-text .sub {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.65);
-    letter-spacing: 3px;
-    font-style: italic;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: rgba(255,255,255,0.75);
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: #fff; }
-  .nav-links a.active { color: #6faee8; }
-
-  /* ===== HERO BANNER ===== */
-  .page-hero {
-    position: relative;
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
-  }
-
-  .page-hero-image {
-    width: 100%;
-    height: 100%;
-    background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80');
-    background-size: cover;
-    background-position: center 40%;
-  }
-
-  .page-hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.30);
-  }
-
-  .page-hero-content {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-    text-align: center;
-    padding: 0 20px;
-  }
-
-  .page-hero-title {
-    font-family: 'PT Sans Narrow', sans-serif;
-    font-size: 3rem;
-    font-weight: 400;
-    color: #fff;
-    margin-bottom: 16px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-  }
-
-  .page-hero-subtitle {
-    display: inline-block;
-    background-color: rgba(255,255,255,0.15);
-    color: #fff;
-    font-family: 'Lato', sans-serif;
-    font-size: 1rem;
-    padding: 8px 20px;
-    letter-spacing: 0.5px;
-  }
-
-  .hero-scroll-hint {
-    position: absolute;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(255,255,255,0.8);
-    font-size: 1.2rem;
-    animation: bounce 1.8s infinite;
-    z-index: 2;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50%       { transform: translateX(-50%) translateY(6px); }
-  }
-
-  /* ===== INTRO SECTION ===== */
-  .intro-section {
-    background: #fff;
-    padding: 50px 0 40px;
-  }
-
-  .intro-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: 1fr 420px;
-    gap: 50px;
-    align-items: start;
-  }
-
-  .intro-text h2 {
-    font-family: 'PT Sans Narrow', sans-serif;
-    font-size: 1.7rem;
-    font-weight: 400;
-    color: #1b2a4a;
-    margin-bottom: 20px;
-  }
-
-  .intro-text p {
-    font-size: 0.9rem;
-    line-height: 1.8;
-    color: #444;
-    margin-bottom: 16px;
-    text-align: justify;
-  }
-
-  .intro-text p strong {
-    color: #1b2a4a;
-    font-weight: 700;
-  }
-
-  .intro-text p a {
-    color: #3a6fd8;
-    text-decoration: none;
-  }
-
-  .btn-devis {
-    display: inline-block;
-    padding: 13px 30px;
-    background-color: #3a6fd8;
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    border-radius: 3px;
-    margin-top: 20px;
-    transition: background-color 0.3s;
-  }
-
-  .btn-devis:hover { background-color: #2b5cb3; }
-
-  .intro-slider {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    background: #eee;
-  }
-
-  .intro-slider img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-  }
-
-  .intro-slider img.active { display: block; }
-
-  .slider-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.35);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    width: 36px;
-    height: 36px;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 5;
-    transition: background 0.2s;
-  }
-
-  .slider-arrow:hover { background: rgba(0,0,0,0.6); }
-  .slider-arrow.prev { left: 0; }
-  .slider-arrow.next { right: 0; }
-
-  /* ===== INFO STRIP ===== */
-  .info-strip {
-    background: #f5f5f5;
-    border-top: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 28px 0;
-  }
-
-  .info-strip-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    font-size: 0.9rem;
-    line-height: 1.85;
-    color: #444;
-  }
-
-  .info-strip-inner p { margin-bottom: 14px; }
-  .info-strip-inner p:last-child { margin-bottom: 0; }
-
-  .info-strip-inner strong { color: #1b2a4a; }
-
-  /* ===== DIFFICULTY CARDS ===== */
-  .circuits-section {
-    background: #f5f5f5;
-    padding: 50px 0;
-  }
-
-  .circuits-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  .section-heading {
-    font-family: 'PT Sans Narrow', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: #1b2a4a;
-    text-align: center;
-    margin-bottom: 36px;
-  }
-
-  .diff-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .diff-card {
-    background-color: #2a4a8c;
-    color: #fff;
-    padding: 30px 26px 26px;
-    border-radius: 2px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .diff-card h3 {
-    font-family: 'PT Sans Narrow', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 14px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.25);
-  }
-
-  .diff-card .desc {
-    font-size: 0.85rem;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.88);
-    margin-bottom: 18px;
-  }
-
-  .diff-card ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 18px;
-    flex: 1;
-  }
-
-  .diff-card ul li {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.9);
-    padding: 4px 0;
-    padding-left: 18px;
-    position: relative;
-  }
-
-  .diff-card ul li::before {
-    content: '►';
-    position: absolute;
-    left: 0;
-    font-size: 0.65rem;
-    top: 6px;
-    color: rgba(255,255,255,0.7);
-  }
-
-  .diff-card ul li strong { color: #fff; }
-
-  .diff-card .note {
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.6);
-    font-style: italic;
-    margin-bottom: 18px;
-  }
-
-  .diff-card-divider {
-    border: none;
-    border-top: 1px solid rgba(255,255,255,0.2);
-    margin: 4px 0 18px;
-  }
-
-  .btn-savoir {
-    display: inline-block;
-    padding: 11px 20px;
-    background-color: transparent;
-    color: #fff;
-    border: 2px solid rgba(255,255,255,0.7);
-    text-decoration: none;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-align: center;
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  .btn-savoir:hover {
-    background-color: rgba(255,255,255,0.15);
-    border-color: #fff;
-  }
-
-  /* ===== DETAIL SECTION ===== */
-  .detail-section {
-    background: #fff;
-    padding: 60px 0;
-  }
-
-  .detail-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  .detail-section .section-heading {
-    margin-bottom: 8px;
-  }
-
-  .detail-section .section-sub {
-    text-align: center;
-    font-size: 0.88rem;
-    color: #666;
-    margin-bottom: 32px;
-  }
-
-  /* Trek Tabs */
-  .trek-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    border-bottom: none;
-    margin-bottom: 0;
-  }
-
-  .trek-tab-btn {
-    padding: 10px 20px;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    border: 1px solid #ccc;
-    border-bottom: none;
-    background: #e8e8e8;
-    color: #555;
-    cursor: pointer;
-    margin-right: 2px;
-    margin-bottom: 2px;
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .trek-tab-btn:hover { background: #ddd; }
-
-  .trek-tab-btn.active {
-    background-color: #3a6fd8;
-    color: #fff;
-    border-color: #3a6fd8;
-  }
-
-  .trek-tab-panel { display: none; }
-  .trek-tab-panel.active { display: block; }
-
-  /* Trek Detail Layout */
-  .trek-detail-grid {
-    display: grid;
-    grid-template-columns: 480px 1fr;
-    gap: 0;
-    border: 1px solid #ddd;
-  }
-
-  .trek-detail-left {
-    padding: 0;
-  }
-
-  .trek-detail-left img {
-    width: 100%;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-    display: block;
-  }
-
-  .trek-detail-meta {
-    padding: 20px 22px;
-    background: #fff;
-  }
-
-  .trek-detail-meta p {
-    font-size: 0.88rem;
-    color: #444;
-    margin-bottom: 8px;
-    line-height: 1.6;
-  }
-
-  .trek-detail-meta p strong { color: #1b2a4a; }
-
-  .trek-detail-meta .desc-text {
-    font-size: 0.87rem;
-    color: #555;
-    line-height: 1.75;
-    margin-top: 12px;
-    margin-bottom: 18px;
-  }
-
-  .trek-detail-right {
-    background: #ebebeb;
-    padding: 22px 24px;
-    overflow-y: auto;
-    max-height: 560px;
-  }
-
-  .day-item {
-    margin-bottom: 12px;
-    font-size: 0.86rem;
-    line-height: 1.6;
-    color: #333;
-  }
-
-  .day-item strong { color: #1b2a4a; }
-
-  .detail-btns {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 0 22px 22px;
-  }
-
-  .btn-info {
-    display: inline-block;
-    padding: 12px 22px;
-    background-color: #3a6fd8;
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-radius: 2px;
-    text-align: center;
-    transition: background 0.2s;
-  }
-
-  .btn-info:hover { background-color: #2b5cb3; }
-
-  .btn-temoignage {
-    display: inline-block;
-    padding: 12px 22px;
-    background-color: #2a2a2a;
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-radius: 2px;
-    text-align: center;
-    transition: background 0.2s;
-  }
-
-  .btn-temoignage:hover { background-color: #111; }
-
-  .btn-departs {
-    display: inline-block;
-    padding: 12px 22px;
-    background-color: #1b2a4a;
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-radius: 2px;
-    text-align: center;
-    transition: background 0.2s;
-  }
-
-  .btn-departs:hover { background-color: #0f1a30; }
-
-  /* ===== SHARE BANNER ===== */
-  .share-banner {
-    background-color: #1d3d8c;
-    padding: 32px 0;
-    text-align: center;
-  }
-
-  .share-banner p {
-    font-family: 'Lato', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 18px;
-  }
-
-  .share-icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .share-icons a {
-    color: rgba(255,255,255,0.75);
-    font-size: 1.3rem;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .share-icons a:hover { color: #fff; }
-
-  .share-icons .divider {
-    width: 1px;
-    height: 28px;
-    background: rgba(255,255,255,0.3);
-    display: inline-block;
-  }
-
-  /* ===== FOOTER ===== */
-  footer {
-    background-color: #1a1f2e;
-    padding: 45px 0 20px;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px 30px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .footer-col h4 {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 18px;
-  }
-
-  .footer-col ul { list-style: none; }
-  .footer-col ul li { margin-bottom: 9px; }
-
-  .footer-col ul li a {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-col ul li a:hover { color: #fff; }
-
-  .footer-bottom { text-align: center; padding: 16px 0 0; }
-
-  .footer-bottom p {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.3);
-  }
-
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 960px) {
-    .intro-inner { grid-template-columns: 1fr; }
-    .diff-cards { grid-template-columns: 1fr; }
-    .trek-detail-grid { grid-template-columns: 1fr; }
-    .trek-detail-right { max-height: 400px; }
-    .footer-grid { grid-template-columns: repeat(2, 1fr); }
-    .page-hero { height: 280px; }
-    .page-hero-title { font-size: 2.2rem; }
-  }
-
-  @media (max-width: 600px) {
-    .nav-links { display: none; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .page-hero { height: 200px; }
-    .page-hero-title { font-size: 1.7rem; }
-    .diff-cards { grid-template-columns: 1fr; }
-  }
-</style>
+<link rel="stylesheet" href="{{ asset('css/layout.css') }}">
+<link rel="stylesheet" href="{{ asset('css/nepal.css') }}">
 </head>
 <body>
 
 {{-- ===== NAVBAR ===== --}}
-<nav>
-  <div class="nav-inner">
-    <a href="{{ route('home') }}" class="nav-logo">
-      <svg class="nav-logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="21,4 36,34 6,34" fill="none" stroke="#7ab4e8" stroke-width="2"/>
-        <polygon points="21,10 32,30 10,30" fill="none" stroke="#7ab4e8" stroke-width="1.2"/>
-        <circle cx="21" cy="21" r="4" fill="#7ab4e8"/>
-      </svg>
-      <div class="nav-logo-text">
-        <span class="brand">Celtic Trekking</span>
-        <span class="sub">Adventure</span>
-      </div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="{{ route('home') }}">Accueil</a></li>
-      <li><a href="{{ route('trekking') }}" class="active">Trekking</a></li>
-      <li><a href="{{ route('departures') }}">Départs Fixes</a></li>
-      <li><a href="{{ route('agency') }}">L'Agence Celtic</a></li>
-      <li><a href="{{ route('testimonials') }}">Témoignage</a></li>
-    </ul>
-  </div>
-</nav>
+@include('partials.navbar')
 
 {{-- ===== HERO ===== --}}
 <section class="page-hero">
   <div class="page-hero-image"></div>
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
-    <h1 class="page-hero-title">Trekking au Népal</h1>
+    <h1 class="page-hero-title">Nepal Trekking</h1>
     <p class="page-hero-subtitle">Le Népal est un escalier monumental dont le sommet se perd dans les nuages</p>
   </div>
   <div class="hero-scroll-hint"><i class="fa fa-chevron-down"></i></div>
@@ -716,7 +30,7 @@
 <section class="intro-section">
   <div class="intro-inner">
     <div class="intro-text">
-      <h2>Nos circuits de treks au Népal</h2>
+      <h2>Our Nepal trek routes</h2>
       <p>
         Olivier KERVIEL, sa femme népalaise, leur équipe, vous invitent à découvrir ce magnifique royaume hindou
         perché sur les contreforts de l'Himalaya. <strong>Au Népal, chacun trouvera son bonheur</strong>, le
@@ -730,7 +44,7 @@
         plus, vous savez que les Népalais, leurs langues et leurs coutumes sont aussi variés que le sol lui-même,
         plus rien ne vous arrête pour visiter ce magnifique pays qu'est le Népal. Venez le faire avec nous !
       </p>
-      <a href="{{ route('contact') }}" class="btn-devis">Je demande un devis</a>
+      <a href="{{ route('contact') }}" class="btn-devis">Request a quote</a>
     </div>
 
     {{-- Image Slider --}}
@@ -766,7 +80,7 @@
 {{-- ===== DIFFICULTY CARDS ===== --}}
 <section class="circuits-section">
   <div class="circuits-inner">
-    <h2 class="section-heading">Découvrez les circuits proposés par l'agence Celtic Trekking</h2>
+    <h2 class="section-heading">Discover the circuits offered by Celtic Trekking agency</h2>
 
     <div class="diff-cards">
 
@@ -874,9 +188,9 @@
             </p>
           </div>
           <div class="detail-btns">
-            <a href="{{ route('contact') }}" class="btn-info">Je souhaite un complément d'informations</a>
-            <a href="{{ route('testimonials') }}" class="btn-temoignage">Nos clients témoignent</a>
-            <a href="{{ route('departures') }}" class="btn-departs">Nos départs fixes</a>
+            <a href="{{ route('contact') }}" class="btn-info">I would like more information</a>
+            <a href="{{ route('testimony') }}" class="btn-temoignage">Our clients testify</a>
+            <a href="{{ route('fixed-departures') }}" class="btn-departs">Nos départs fixes</a>
           </div>
         </div>
         <div class="trek-detail-right">
@@ -915,9 +229,9 @@
             <p class="desc-text">Trek dans la belle vallée du Langtang, à seulement quelques heures de Kathmandu. Rencontres avec les peuples Tamang et Tibétains. Vues sublimes sur les sommets enneigés.</p>
           </div>
           <div class="detail-btns">
-            <a href="{{ route('contact') }}" class="btn-info">Je souhaite un complément d'informations</a>
-            <a href="{{ route('testimonials') }}" class="btn-temoignage">Nos clients témoignent</a>
-            <a href="{{ route('departures') }}" class="btn-departs">Nos départs fixes</a>
+            <a href="{{ route('contact') }}" class="btn-info">I would like more information</a>
+            <a href="{{ route('testimony') }}" class="btn-temoignage">Our clients testify</a>
+            <a href="{{ route('fixed-departures') }}" class="btn-departs">Nos départs fixes</a>
           </div>
         </div>
         <div class="trek-detail-right">
@@ -956,16 +270,16 @@
             <p><strong>Type :</strong> {{ $t['type'] }}</p>
             <p><strong>Durée :</strong> {{ $t['duree'] }}</p>
             <p><strong>Difficulté :</strong> {{ $t['diff'] }}</p>
-            <p class="desc-text">Contactez-nous pour obtenir le programme détaillé de ce trek et toutes les informations nécessaires à la préparation de votre voyage.</p>
+            <p class="desc-text">Contact Us pour obtenir le programme détaillé de ce trek et toutes les informations nécessaires à la préparation de votre voyage.</p>
           </div>
           <div class="detail-btns">
-            <a href="{{ route('contact') }}" class="btn-info">Je souhaite un complément d'informations</a>
-            <a href="{{ route('testimonials') }}" class="btn-temoignage">Nos clients témoignent</a>
-            <a href="{{ route('departures') }}" class="btn-departs">Nos départs fixes</a>
+            <a href="{{ route('contact') }}" class="btn-info">I would like more information</a>
+            <a href="{{ route('testimony') }}" class="btn-temoignage">Our clients testify</a>
+            <a href="{{ route('fixed-departures') }}" class="btn-departs">Nos départs fixes</a>
           </div>
         </div>
         <div class="trek-detail-right" style="display:flex;align-items:center;justify-content:center;">
-          <p style="color:#666;font-size:0.9rem;text-align:center;">Programme détaillé disponible sur demande.<br>Contactez-nous pour plus d'informations.</p>
+          <p style="color:#666;font-size:0.9rem;text-align:center;">Programme détaillé disponible sur demande.<br>Contact Us pour plus d'informations.</p>
         </div>
       </div>
     </div>
@@ -986,49 +300,7 @@
   </div>
 </section>
 
-{{-- ===== FOOTER ===== --}}
-<footer>
-  <div class="footer-grid">
-    <div class="footer-col">
-      <h4>Trekking</h4>
-      <ul>
-        <li><a href="{{ route('trekking') }}">Trekking Népal</a></li>
-        <li><a href="#">Trekking Tibet</a></li>
-        <li><a href="#">Trekking Maroc</a></li>
-        <li><a href="#">Trekking Roumanie</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Plan du Site</h4>
-      <ul>
-        <li><a href="{{ route('departures') }}">Départs Fixes</a></li>
-        <li><a href="{{ route('agency') }}">Agence Celtic Trekking</a></li>
-        <li><a href="{{ route('testimonials') }}">Nos Clients Témoignent</a></li>
-        <li><a href="{{ route('contact') }}">Contactez-nous</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Partenaires</h4>
-      <ul>
-        <li><a href="#">Guide du Routard</a></li>
-        <li><a href="#">Népal Moutaineering</a></li>
-        <li><a href="#">Welcome Népal</a></li>
-        <li><a href="#">Trekking Agencies Népal</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Partenaires</h4>
-      <ul>
-        <li><a href="#">Traveling Népal</a></li>
-        <li><a href="#">Le Yeti – Magasin Spécialisé</a></li>
-        <li><a href="#">Paulines Guesthouse</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>2022 – Celtic Trekking</p>
-  </div>
-</footer>
+@include('partials.footer')
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {

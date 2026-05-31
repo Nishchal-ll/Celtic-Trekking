@@ -1,426 +1,19 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en" translate="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Témoignages – Celtic Trekking</title>
+<meta name="google" content="notranslate">
+<title>Testimonials – Celtic Trekking</title>
 <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Lato', sans-serif;
-    background: #fff;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  /* ===== NAVBAR ===== */
-  nav {
-    background-color: #1a2a4a;
-    padding: 0;
-    height: 64px;
-    position: relative;
-    z-index: 100;
-  }
-
-  .nav-inner {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-  }
-
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-  }
-
-  .nav-logo-icon {
-    width: 42px;
-    height: 42px;
-  }
-
-  .nav-logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-  }
-
-  .nav-logo-text .brand {
-    font-family: 'PT Sans Narrow', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  .nav-logo-text .sub {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.65);
-    letter-spacing: 3px;
-    font-style: italic;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: rgba(255,255,255,0.75);
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: #fff; }
-  .nav-links a.active { color: #6faee8; }
-
-  /* ===== HERO BANNER ===== */
-  .page-hero {
-    position: relative;
-    width: 100%;
-    height: 260px;
-    overflow: hidden;
-  }
-
-  .page-hero-image {
-    width: 100%;
-    height: 100%;
-    background-image: url('https://images.unsplash.com/photo-1469521669194-babb45599def?auto=format&fit=crop&w=1600&q=80');
-    background-size: cover;
-    background-position: center 30%;
-  }
-
-  .page-hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.25);
-  }
-
-  .page-hero-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    display: inline-block;
-    padding: 12px 30px;
-    background-color: #3a6fd8;
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    border-radius: 2px;
-    transition: background-color 0.3s;
-  }
-
-  .page-hero-btn:hover { background-color: #2b5cb3; }
-
-  /* ===== PAGE TITLE BAR ===== */
-  .page-title-bar {
-    background-color: #1d3d8c;
-    padding: 20px 0;
-    text-align: center;
-  }
-
-  .page-title-bar h1 {
-    font-family: 'PT Sans Narrow', sans-serif;
-    font-size: 1.9rem;
-    font-weight: 400;
-    color: #fff;
-    letter-spacing: 1px;
-  }
-
-  /* ===== TESTIMONIALS CAROUSEL ===== */
-  .temoignages-section {
-    background-color: #f0f0f0;
-    padding: 50px 0 60px;
-    position: relative;
-  }
-
-  .temoignages-viewport {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 60px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .temoignages-track {
-    display: flex;
-    gap: 24px;
-    transition: transform 0.5s ease;
-  }
-
-  /* Each "page" shows 3 cards at once */
-  .temoignage-card {
-    flex: 0 0 calc((100% - 48px) / 3);
-    background-color: #e8e8e8;
-    border-radius: 2px;
-    padding: 30px 28px 50px;
-    position: relative;
-    min-height: 380px;
-  }
-
-  /* Speech bubble tail */
-  .temoignage-card::after {
-    content: '';
-    position: absolute;
-    bottom: -18px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0; height: 0;
-    border-left: 16px solid transparent;
-    border-right: 16px solid transparent;
-    border-top: 18px solid #e8e8e8;
-  }
-
-  .card-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-
-  .card-avatar {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background-color: #c0c4ce;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: #fff;
-    font-size: 1.4rem;
-  }
-
-  .card-meta {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .card-name {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 700;
-    font-style: italic;
-    color: #1b2a4a;
-    margin-bottom: 2px;
-  }
-
-  .card-trek {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 700;
-    font-style: italic;
-    color: #1b2a4a;
-  }
-
-  .card-text {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.85rem;
-    font-style: italic;
-    line-height: 1.7;
-    color: #444;
-  }
-
-  /* Carousel arrows */
-  .carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    background: none;
-    border: none;
-    color: #aaa;
-    font-size: 1.3rem;
-    cursor: pointer;
-    padding: 8px;
-    transition: color 0.2s;
-  }
-
-  .carousel-arrow:hover { color: #555; }
-  .carousel-prev { left: 0; }
-  .carousel-next { right: 0; }
-
-  /* Carousel dots */
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 50px;
-  }
-
-  .carousel-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background-color: transparent;
-    border: 2px solid #aaa;
-    cursor: pointer;
-    padding: 0;
-    transition: all 0.3s;
-  }
-
-  .carousel-dot.active {
-    background-color: #666;
-    border-color: #666;
-  }
-
-  /* ===== SHARE BANNER ===== */
-  .share-banner {
-    background-color: #1d3d8c;
-    padding: 22px 0;
-    text-align: center;
-  }
-
-  .share-banner p {
-    font-family: 'Lato', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 0.5px;
-  }
-
-  /* ===== SOCIAL STRIP ===== */
-  .social-strip {
-    background-color: #1a2a4a;
-    padding: 18px 0;
-    text-align: center;
-  }
-
-  .social-strip-inner {
-    display: inline-flex;
-    align-items: center;
-    gap: 20px;
-    color: rgba(255,255,255,0.85);
-    font-size: 1.1rem;
-  }
-
-  .social-strip-inner span.divider {
-    display: inline-block;
-    width: 1px;
-    height: 28px;
-    background-color: rgba(255,255,255,0.3);
-  }
-
-  /* ===== FOOTER ===== */
-  footer {
-    background-color: #1a1f2e;
-    padding: 45px 0 20px;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px 30px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .footer-col h4 {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 18px;
-  }
-
-  .footer-col ul { list-style: none; }
-
-  .footer-col ul li { margin-bottom: 9px; }
-
-  .footer-col ul li a {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-col ul li a:hover { color: #fff; }
-
-  .footer-bottom {
-    text-align: center;
-    padding: 16px 0 0;
-  }
-
-  .footer-bottom p {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.3);
-  }
-
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 900px) {
-    .temoignage-card { flex: 0 0 calc((100% - 24px) / 2); }
-    .footer-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 600px) {
-    .temoignage-card { flex: 0 0 100%; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-  }
-</style>
+<link rel="stylesheet" href="{{ asset('css/layout.css') }}">
+<link rel="stylesheet" href="{{ asset('css/testimony.css') }}">
 </head>
 <body>
 
 <!-- ===== NAVBAR ===== -->
-<nav>
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <svg class="nav-logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="21,4 36,34 6,34" fill="none" stroke="#7ab4e8" stroke-width="2"/>
-        <polygon points="21,10 32,30 10,30" fill="none" stroke="#7ab4e8" stroke-width="1.2"/>
-        <circle cx="21" cy="21" r="4" fill="#7ab4e8"/>
-      </svg>
-      <div class="nav-logo-text">
-        <span class="brand">Celtic Trekking</span>
-        <span class="sub">Adventure</span>
-      </div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="#">Trekking</a></li>
-      <li><a href="#">Départs Fixes</a></li>
-      <li><a href="#">L'Agence Celtic</a></li>
-      <li><a href="#" class="active">Témoignage</a></li>
-    </ul>
-  </div>
-</nav>
+@include('partials.navbar')
 
 <!-- ===== HERO BANNER ===== -->
 <section class="page-hero">
@@ -451,7 +44,7 @@
             <span class="card-name">Philippe Rome , La route du Sel</span>
           </div>
         </div>
-        <p class="card-text">Nous allons partir en trek pour la 4ème fois avec Celtic Trekking toujours avec le même plaisir. Après le tour des Annapurnas, le Manaslu et le Langtang nous allons partir le 29 mars pour la Route du sel.Bonne année</p>
+        <p class="card-text">We are going on our 4th trek with Celtic Trekking, always with the same pleasure. After the Annapurna Circuit, Manaslu and Langtang, we leave on March 29 for the Salt Route. Happy New Year!</p>
       </div>
 
       <div class="temoignage-card">
@@ -473,7 +66,7 @@
             <span class="card-trek">Balcon des Annapurnas, Bardiya et plantation de thé du 13 Mars au 3 Avril 2023</span>
           </div>
         </div>
-        <p class="card-text">Nous sommes tous enchantés, pour la gestion du dossier, de la prise en compte de nos demandes tant avant notre venue au Népal, que sur place. Toutes nos demandes ont été prises en compte. Excellent contact avec Uddhav, aussi gentil qu'efficace.</p>
+        <p class="card-text">We are all delighted with the file management and the attention given to our requests both before our arrival in Nepal and on site. All our requests were taken into account. Excellent contact with Uddhav, as kind as he is efficient.</p>
       </div>
 
       <div class="temoignage-card">
@@ -484,7 +77,7 @@
             <span class="card-trek">Trek Annapurnas – Novembre 2024</span>
           </div>
         </div>
-        <p class="card-text">Trek exceptionnel dans le circuit des Annapurnas avec guide sympa, attentif, à l'écoute et intéressant ainsi que les porteurs. Ambiance joviale et musicale certains soirs. Merci beaucoup à tous.</p>
+        <p class="card-text">Exceptional trek on the Annapurna circuit with a friendly, attentive and interesting guide, as well as the porters. A joyful and musical atmosphere on some evenings. Thank you all very much.</p>
       </div>
 
       <div class="temoignage-card">
@@ -495,7 +88,7 @@
             <span class="card-trek">Tour des Annapurnas – Octobre 2024</span>
           </div>
         </div>
-        <p class="card-text">Parfaitement organisé, nous avons ainsi profité au maximum de notre voyage ! Guide très compétent, attentif et sympathique. Logistique impeccable du début à la fin. Nous reviendrons sans hésiter.</p>
+        <p class="card-text">Perfectly organized, we made the most of our journey! Very competent, attentive and friendly guide. Impeccable logistics from start to finish. We will come back without hesitation.</p>
       </div>
 
       <div class="temoignage-card">
@@ -506,7 +99,7 @@
             <span class="card-trek">Trek Everest Base Camp – 2024</span>
           </div>
         </div>
-        <p class="card-text">Des guides d'un grand professionnalisme et d'une attention de tous les instants. Une expérience humaine autant que sportive. Je recommande Celtic Trekking à tous ceux qui souhaitent vivre une aventure authentique au Népal.</p>
+        <p class="card-text">Guides with great professionalism and constant attention. A human as well as a sporting experience. I recommend Celtic Trekking to anyone who wants to live an authentic adventure in Nepal.</p>
       </div>
 
       <div class="temoignage-card">
@@ -517,7 +110,7 @@
             <span class="card-trek">Trek Langtang – Septembre 2023</span>
           </div>
         </div>
-        <p class="card-text">Une organisation sans faille, un guide passionné et cultivé. Le trek Langtang est magnifique et les villages traversés sont d'une authenticité rare. Celtic Trekking a su rendre cette aventure inoubliable.</p>
+        <p class="card-text">A flawless organization, a passionate and knowledgeable guide. The Langtang trek is magnificent and the villages you cross are of rare authenticity. Celtic Trekking made this adventure unforgettable.</p>
       </div>
 
       <div class="temoignage-card">
@@ -556,7 +149,7 @@
 
 <!-- ===== SHARE BANNER ===== -->
 <div class="share-banner">
-  <p>Partagez votre aventure avec vos proches</p>
+  <p>Share your adventure with friends</p>
 </div>
 
 <!-- ===== SOCIAL STRIP ===== -->
@@ -570,49 +163,7 @@
   </div>
 </div>
 
-<!-- ===== FOOTER ===== -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-col">
-      <h4>Trekking</h4>
-      <ul>
-        <li><a href="#">Trekking Népal</a></li>
-        <li><a href="#">Trekking Tibet</a></li>
-        <li><a href="#">Trekking Maroc</a></li>
-        <li><a href="#">Trekking Roumanie</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Plan du Site</h4>
-      <ul>
-        <li><a href="#">Départs Fixes</a></li>
-        <li><a href="#">Agence Celtic Trekking</a></li>
-        <li><a href="#">Nos Clients Témoignent</a></li>
-        <li><a href="#">Contactez-nous</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Partenaires</h4>
-      <ul>
-        <li><a href="#">Guide du Routard</a></li>
-        <li><a href="#">Népal Moutaineering</a></li>
-        <li><a href="#">Welcome Népal</a></li>
-        <li><a href="#">Trekking Agencies Népal</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Partenaires</h4>
-      <ul>
-        <li><a href="#">Traveling Népal</a></li>
-        <li><a href="#">Le Yeti – Magasin Spécialisé</a></li>
-        <li><a href="#">Paulines Guesthouse</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>2022 – Celtic Trekking</p>
-  </div>
-</footer>
+@include('partials.footer')
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {

@@ -1,0 +1,247 @@
+.page-hero {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.page-hero-image {
+  width: 100%;
+  height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1469521669194-babb45599def?auto=format&fit=crop&w=1600&q=80');
+  background-size: cover;
+  background-position: center 30%;
+}
+
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+}
+
+.page-hero-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: #3a6fd8;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 2px;
+  transition: background-color 0.3s;
+}
+
+.page-hero-btn:hover {
+  background-color: #2b5cb3;
+}
+
+.page-title-bar {
+  background-color: #1d3d8c;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.page-title-bar h1 {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.temoignages-section {
+  background-color: #f0f0f0;
+  padding: 50px 0 60px;
+  position: relative;
+}
+
+.temoignages-viewport {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.temoignages-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.5s ease;
+}
+
+.temoignage-card {
+  flex: 0 0 calc((100% - 48px) / 3);
+  background-color: #e8e8e8;
+  border-radius: 2px;
+  padding: 30px 28px 50px;
+  position: relative;
+  min-height: 380px;
+}
+
+.temoignage-card::after {
+  content: '';
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-top: 18px solid #e8e8e8;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.card-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #c0c4ce;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-name {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #1b2a4a;
+  margin-bottom: 2px;
+}
+
+.card-trek {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #1b2a4a;
+}
+
+.card-text {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: #444;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.2s;
+}
+
+.carousel-arrow:hover {
+  color: #555;
+}
+
+.carousel-prev {
+  left: 0;
+}
+
+.carousel-next {
+  right: 0;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 50px;
+}
+
+.carousel-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid #aaa;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s;
+}
+
+.carousel-dot.active {
+  background-color: #666;
+  border-color: #666;
+}
+
+.share-banner {
+  background-color: #1d3d8c;
+  padding: 22px 0;
+  text-align: center;
+}
+
+.share-banner p {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.social-strip {
+  background-color: #1a2a4a;
+  padding: 18px 0;
+  text-align: center;
+}
+
+.social-strip-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  color: rgba(255,255,255,0.85);
+  font-size: 1.1rem;
+}
+
+.social-strip-inner span.divider {
+  display: inline-block;
+  width: 1px;
+  height: 28px;
+  background-color: rgba(255,255,255,0.3);
+}
+
+@media (max-width: 900px) {
+  .temoignage-card {
+    flex: 0 0 calc((100% - 24px) / 2);
+  }
+}
+
+@media (max-width: 600px) {
+  .temoignage-card {
+    flex: 0 0 100%;
+  }
+}

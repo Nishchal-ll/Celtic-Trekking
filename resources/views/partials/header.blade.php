@@ -16,25 +16,25 @@
         <nav id="main-nav" class="main-nav">
             <ul class="nav-menu">
                 <li class="menu-item">
-                    <a href="{{ url('/') }}">ACCUEIL</a>
+                    <a href="{{ url('/') }}">HOME</a>
                 </li>
                 <li class="menu-item has-dropdown">
                     <a href="{{ route('trekking.index') }}">TREKKING</a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('trekking.nepal') }}">TREKKING NÉPAL</a></li>
-                        <li><a href="{{ route('trekking.tibet') }}">TREKKING TIBET</a></li>
-                        <li><a href="{{ route('trekking.maroc') }}">TREKKING MAROC</a></li>
-                        <li><a href="{{ route('trekking.roumanie') }}">TREKKING ROUMANIE</a></li>
+                        <li><a href="{{ route('trekking.nepal') }}">NEPAL TREKKING</a></li>
+                        <li><a href="{{ route('trekking.tibet') }}">TIBET TREKKING</a></li>
+                        <li><a href="{{ route('trekking.maroc') }}">MOROCCO TREKKING</a></li>
+                        <li><a href="{{ route('trekking.roumanie') }}">ROMANIA TREKKING</a></li>
                     </ul>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('fixed-departures') }}">DÉPARTS FIXES</a>
+                    <a href="{{ route('fixed-departures') }}">FIXED DEPARTURES</a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('agency') }}">L'AGENCE CELTIC</a>
+                    <a href="{{ route('agency') }}">CELTIC AGENCY</a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('testimony') }}">TÉMOIGNAGE</a>
+                    <a href="{{ route('testimony') }}">TESTIMONIALS</a>
                 </li>
             </ul>
         </nav>
@@ -50,19 +50,19 @@
     <!-- Mobile Navigation -->
     <nav id="mobile-nav" class="mobile-nav">
         <ul class="mobile-nav-menu">
-            <li><a href="{{ url('/') }}">ACCUEIL</a></li>
+            <li><a href="{{ url('/') }}">HOME</a></li>
             <li class="has-submenu">
                 <a href="{{ route('trekking.index') }}">TREKKING</a>
                 <ul class="submenu">
-                    <li><a href="{{ route('trekking.nepal') }}">TREKKING NÉPAL</a></li>
-                    <li><a href="{{ route('trekking.tibet') }}">TREKKING TIBET</a></li>
-                    <li><a href="{{ route('trekking.maroc') }}">TREKKING MAROC</a></li>
-                    <li><a href="{{ route('trekking.roumanie') }}">TREKKING ROUMANIE</a></li>
+                    <li><a href="{{ route('trekking.nepal') }}">NEPAL TREKKING</a></li>
+                    <li><a href="{{ route('trekking.tibet') }}">TIBET TREKKING</a></li>
+                    <li><a href="{{ route('trekking.maroc') }}">MOROCCO TREKKING</a></li>
+                    <li><a href="{{ route('trekking.roumanie') }}">ROMANIA TREKKING</a></li>
                 </ul>
             </li>
-            <li><a href="{{ route('fixed-departures') }}">DÉPARTS FIXES</a></li>
-            <li><a href="{{ route('agency') }}">L'AGENCE CELTIC</a></li>
-            <li><a href="{{ route('testimony') }}">TÉMOIGNAGE</a></li>
+            <li><a href="{{ route('fixed-departures') }}">FIXED DEPARTURES</a></li>
+            <li><a href="{{ route('agency') }}">CELTIC AGENCY</a></li>
+            <li><a href="{{ route('testimony') }}">TESTIMONIALS</a></li>
         </ul>
     </nav>
 </header>
