@@ -1,0 +1,63 @@
+<?php
+
+namespace App\Filament\Resources;
+
+use App\Filament\Resources\MenuItemResource\Pages;
+use App\Models\MenuItem;
+use BackedEnum;
+use Filament\Resources\Form;
+use Filament\Resources\Resource;
+use Filament\Resources\Table;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Tables\Columns\TextColumn;
+
+class MenuItemResource extends Resource
+{
+    protected static ?string $model = MenuItem::class;
+
+    protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-menu';
+    protected static ?string $navigationLabel = 'Menu Items';
+    protected static ?string $pluralModelLabel = 'Menu Items';
+    protected static ?string $modelLabel = 'Menu Item';
+
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                TextInput::make('label')
+                    ->required()
+                    ->maxLength(255),
+                TextInput::make('url')
+                    ->required()
+                    ->url()
+                    ->maxLength(255),
+                Toggle::make('open_in_new_tab')
+                    ->label('Open in new tab'),
+                TextInput::make('order')
+                    ->numeric()
+                    ->default(0),
+            ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                TextColumn::make('label')->sortable()->searchable(),
+                TextColumn::make('url')->sortable()->searchable(),
+                TextColumn::make('open_in_new_tab')->boolean()->label('New Tab'),
+                TextColumn::make('order')->sortable(),
+            ])
+            ->defaultSort('order');
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListMenuItems::route('/'),
+            'create' => Pages\CreateMenuItem::route('/create'),
+            'edit' => Pages\EditMenuItem::route('/{record}/edit'),
+        ];
+    }
+}

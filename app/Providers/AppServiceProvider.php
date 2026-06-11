@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\FooterLink;
+use App\Models\MenuItem;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::share('menuItems', MenuItem::orderBy('order')->get());
+        View::share('footerLinks', FooterLink::orderBy('order')->get());
     }
 }

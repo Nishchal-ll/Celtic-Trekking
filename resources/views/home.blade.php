@@ -17,82 +17,42 @@
 <!-- HERO SLIDER -->
 <section class="hero-slider" id="hero-slider">
   <div class="slider-wrapper">
-
-    <div class="slide active" data-slide="0">
-      <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1519682577862-22b62b24e493?auto=format&fit=crop&w=1600&q=80');">
-        <div class="slide-overlay"></div>
-        <div class="slide-content">
-          <h2 class="slide-title">Roumanie</h2>
-          <p class="slide-subtitle">Une destination aux paysages variés et somptueux injustement méconnue</p>
-          <a href="#" class="btn-slide">Learn More</a>
+    @forelse($slides as $index => $slide)
+      <div class="slide {{ $index === 0 ? 'active' : '' }}" data-slide="{{ $index }}">
+        <div class="slide-image" style="background-image: url('{{ asset($slide->image) }}');">
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <h2 class="slide-title">{{ $slide->title }}</h2>
+            @if($slide->subtitle)
+              <p class="slide-subtitle">{{ $slide->subtitle }}</p>
+            @endif
+            @if($slide->link)
+              <a href="{{ $slide->link }}" class="btn-slide">{{ $slide->button_text ?? __('home.discover') }}</a>
+            @endif
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="slide" data-slide="1">
-      <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1600&q=80');">
-        <div class="slide-overlay"></div>
-        <div class="slide-content">
-          <h2 class="slide-title">Népal</h2>
-          <p class="slide-subtitle">Immersion au cœur des vallées sacrées de l'Himalaya</p>
-          <a href="#" class="btn-slide">Learn More</a>
+    @empty
+      <div class="slide active" data-slide="0">
+        <div class="slide-image" style="background-image: url('{{ asset('images/hero-default.jpg') }}');">
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <h2 class="slide-title">Welcome to Celtic Trekking</h2>
+            <p class="slide-subtitle">Discover authentic trekking experiences around the world</p>
+            <a href="{{ route('trekking.index') }}" class="btn-slide">Learn More</a>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="slide" data-slide="2">
-      <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=1600&q=80');">
-        <div class="slide-overlay"></div>
-        <div class="slide-content">
-          <h2 class="slide-title">Maroc</h2>
-          <p class="slide-subtitle">Dunes et kasbahs, une aventure authentique au cœur du désert</p>
-          <a href="#" class="btn-slide">Learn More</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="slide" data-slide="3">
-      <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80');">
-        <div class="slide-overlay"></div>
-        <div class="slide-content">
-          <h2 class="slide-title">Tibet</h2>
-          <p class="slide-subtitle">Des paysages himalayens inoubliables au toit du monde</p>
-          <a href="#" class="btn-slide">Learn More</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="slide" data-slide="4">
-      <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1600&q=80');">
-        <div class="slide-overlay"></div>
-        <div class="slide-content">
-          <h2 class="slide-title">Himalaya</h2>
-          <p class="slide-subtitle">Partez à la conquête des sommets légendaires</p>
-          <a href="#" class="btn-slide">Learn More</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="slide" data-slide="5">
-      <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80');">
-        <div class="slide-overlay"></div>
-        <div class="slide-content">
-          <h2 class="slide-title">Aventure</h2>
-          <p class="slide-subtitle">Explorez les sentiers les plus beaux du monde avec nos guides</p>
-          <a href="#" class="btn-slide">Learn More</a>
-        </div>
-      </div>
-    </div>
-
+    @endforelse
   </div>
 
   <div class="slider-dots">
-    <button class="slider-dot active" data-slide="0"></button>
-    <button class="slider-dot" data-slide="1"></button>
-    <button class="slider-dot" data-slide="2"></button>
-    <button class="slider-dot" data-slide="3"></button>
-    <button class="slider-dot" data-slide="4"></button>
-    <button class="slider-dot" data-slide="5"></button>
+    @foreach($slides as $index => $slide)
+      <button class="slider-dot {{ $index === 0 ? 'active' : '' }}" data-slide="{{ $index }}"></button>
+    @endforeach
+    @unless($slides->count())
+      <button class="slider-dot active" data-slide="0"></button>
+    @endunless
   </div>
 
   <button class="slider-arrow slider-prev"><i class="fa fa-chevron-left"></i></button>
@@ -110,35 +70,21 @@
 <section class="destinations-section">
   <div class="container">
     <div class="destinations-grid">
-
-      <a href="#" class="destination-card">
-        <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80');"></div>
-        <div class="destination-meta">
-          <span class="destination-country">Tibet</span>
-        </div>
-      </a>
-
-      <a href="#" class="destination-card">
-        <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80');"></div>
-        <div class="destination-meta">
-          <span class="destination-country">Népal</span>
-        </div>
-      </a>
-
-      <a href="#" class="destination-card">
-        <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=800&q=80');"></div>
-        <div class="destination-meta">
-          <span class="destination-country">Maroc</span>
-        </div>
-      </a>
-
-      <a href="#" class="destination-card">
-        <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1519682577862-22b62b24e493?auto=format&fit=crop&w=800&q=80');"></div>
-        <div class="destination-meta">
-          <span class="destination-country">Roumanie</span>
-        </div>
-      </a>
-
+      @forelse($destinations as $destination)
+        <a href="{{ $destination->link }}" class="destination-card">
+          <div class="destination-image" style="background-image: url('{{ asset($destination->image) }}');"></div>
+          <div class="destination-meta">
+            <span class="destination-country">{{ $destination->name }}</span>
+          </div>
+        </a>
+      @empty
+        <a href="{{ route('trekking.index') }}" class="destination-card">
+          <div class="destination-image" style="background-image: url('{{ asset('images/destination-default.jpg') }}');"></div>
+          <div class="destination-meta">
+            <span class="destination-country">Default Destination</span>
+          </div>
+        </a>
+      @endforelse
     </div>
   </div>
 </section>
@@ -198,7 +144,6 @@
     <div class="contact-info-wrapper">
       <p class="contact-text">
         Please call us if you need information<br>
-        ou si vous ne trouvez pas les bureaux :
       </p>
       <div class="contact-phones">
         <span>Uddhav : <a href="tel:+9779841786778">9841 78 67 78</a></span>

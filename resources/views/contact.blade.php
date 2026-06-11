@@ -28,7 +28,7 @@
 
     {{-- Left: Contact Info --}}
     <div class="contact-info">
-      <h1>Contacter l'agence Celtic Trekking</h1>
+      <h1>Contact Celtic Trekking</h1>
 
       <h2>Celtic Trekking Adventure (P.) Ltd.</h2>
       <address>
@@ -37,11 +37,10 @@
       </address>
 
       <p class="call-note">Please call us if you need information</p>
-      <p class="call-sub">ou si vous ne trouvez pas les bureaux :</p>
 
       <div class="contact-details">
         <p><strong>Uddhav :</strong> 9841 78 67 78 &nbsp;–&nbsp; <strong>Krishna Raj :</strong> 9841 41 31 67</p>
-        <p><strong>Téléphone :</strong> <a href="tel:+977-1-4701205">+977-1-4701205</a></p>
+        <p><strong>Telephone :</strong> <a href="tel:+977-1-4701205">+977-1-4701205</a></p>
         <p><strong>Email :</strong> <a href="mailto:contact@celtictrekking.com">contact@celtictrekking.com</a></p>
       </div>
     </div>
@@ -88,12 +87,14 @@
       </div>
 
       <div class="form-group">
-        <label for="destination">Request information for:</label>
-        <select id="destination" name="destination">
-          <option value="NEPAL"    {{ old('destination','NEPAL') == 'NEPAL'    ? 'selected' : '' }}>NEPAL</option>
-          <option value="TIBET"    {{ old('destination') == 'TIBET'    ? 'selected' : '' }}>TIBET</option>
-          <option value="ROUMANIE" {{ old('destination') == 'ROUMANIE' ? 'selected' : '' }}>ROUMANIE</option>
-          <option value="AUTRE"    {{ old('destination') == 'AUTRE'    ? 'selected' : '' }}>AUTRE</option>
+        <label for="destination_id">Request information for:</label>
+        <select id="destination_id" name="destination_id">
+          <option value="">Select a destination</option>
+          @foreach($destinations as $destination)
+            <option value="{{ $destination->id }}" {{ old('destination_id') == $destination->id ? 'selected' : '' }}>
+              {{ $destination->name }}
+            </option>
+          @endforeach
         </select>
       </div>
 

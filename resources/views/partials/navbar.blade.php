@@ -13,12 +13,16 @@
         </a>
 
         <ul class="nav-links">
-            <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
-            <li><a href="{{ route('trekking.index') }}" class="{{ request()->routeIs('trekking.*') ? 'active' : '' }}">Trekking</a></li>
-            <li><a href="{{ route('fixed-departures') }}" class="{{ request()->routeIs('fixed-departures') ? 'active' : '' }}">Fixed Departures</a></li>
-            <li><a href="{{ route('agency') }}" class="{{ request()->routeIs('agency') ? 'active' : '' }}">Celtic Agency</a></li>
-            <li><a href="{{ route('testimony') }}" class="{{ request()->routeIs('testimony') ? 'active' : '' }}">Testimonials</a></li>
-            <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a></li>
+            @forelse($menuItems as $item)
+                <li><a href="{{ $item->url }}" @if($item->open_in_new_tab) target="_blank" rel="noopener" @endif>{{ $item->label }}</a></li>
+            @empty
+                <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
+                <li><a href="{{ route('trekking.index') }}" class="{{ request()->routeIs('trekking.*') ? 'active' : '' }}">Trekking</a></li>
+                <li><a href="{{ route('fixed-departures') }}" class="{{ request()->routeIs('fixed-departures') ? 'active' : '' }}">Fixed Departures</a></li>
+                <li><a href="{{ route('agency') }}" class="{{ request()->routeIs('agency') ? 'active' : '' }}">Celtic Agency</a></li>
+                <li><a href="{{ route('testimony') }}" class="{{ request()->routeIs('testimony') ? 'active' : '' }}">Testimonials</a></li>
+                <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a></li>
+            @endforelse
         </ul>
     </div>
 </nav>
