@@ -37,10 +37,3 @@ Experience the application live in production here: **[https://celtictrekking.co
 | **Email Service** | SMTP / Resend API Integration |
 
 ---
-
-
-
-### 1. Clone the Repository
-```bash
-git clone [https://github.com/your-username/celtic-trekking.git](https://github.com/your-username/celtic-trekking.git)
-cd celtic-trekking
