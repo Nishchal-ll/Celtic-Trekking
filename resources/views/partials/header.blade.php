@@ -4,7 +4,7 @@
         <!-- Logo -->
         <div class="logo">
             <a href="{{ url('/') }}">
-                <img src="{{ asset('images/logo-celtic-trekking.png') }}" alt="Celtic Trekking Adventure" class="logo-img">
+                <img src="{{ asset(isset($settings['logo']) && $settings['logo'] ? 'storage/' . $settings['logo'] : 'images/logo-celtic-trekking.png') }}" alt="Celtic Trekking Adventure" class="logo-img">
                 <div class="logo-text">
                     <span class="logo-title">CELTIC TREKKING</span>
                     <span class="logo-subtitle">Adventure</span>

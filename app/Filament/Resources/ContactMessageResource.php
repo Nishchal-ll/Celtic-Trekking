@@ -5,28 +5,31 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ContactMessageResource\Pages;
 use App\Models\ContactMessage;
 use BackedEnum;
-use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Actions\Action;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\ViewAction;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Schemas\Schema;
 use Filament\Tables;
+use Filament\Tables\Columns\BadgeColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
-use Filament\Tables\Columns\TextColumn;
 
 class ContactMessageResource extends Resource
 {
     protected static ?string $model = ContactMessage::class;
 
-    protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-mail';
+    protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-envelope';
     protected static ?string $navigationLabel = 'Contact Messages';
     protected static ?string $pluralModelLabel = 'Contact Messages';
     protected static ?string $modelLabel = 'Contact Message';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 TextInput::make('full_name')
                     ->required()
@@ -48,6 +51,15 @@ class ContactMessageResource extends Resource
                     ->required(),
                 Textarea::make('message')
                     ->maxLength(2000),
+                
+                Select::make('is_read')
+                    ->label('Read status')
+                    ->options([
+                        0 => 'Unread',
+                        1 => 'Read',
+                    ])
+                    ->required()
+                    ->default(0),
             ]);
     }
 
@@ -58,6 +70,15 @@ class ContactMessageResource extends Resource
                 TextColumn::make('full_name')->searchable()->sortable(),
                 TextColumn::make('email_address')->searchable()->sortable(),
                 TextColumn::make('destination.name')->label('Destination')->sortable(),
+                TextColumn::make('is_read')
+                    ->label('Status')
+                    ->badge()
+                    ->formatStateUsing(fn ($state) => $state ? 'Read' : 'Unread')
+                    ->colors([
+                        'danger' => false,
+                        'success' => true,
+                    ])
+                    ->sortable(),
                 TextColumn::make('persons')->sortable(),
                 TextColumn::make('created_at')->label('Submitted')->dateTime()->sortable(),
             ])
@@ -69,7 +90,15 @@ class ContactMessageResource extends Resource
                             ->searchable()
                             ->preload(),
                     ])
-                    ->query(fn ($query, array $data) => $query->when($data['destination_id'], fn ($query, $destinationId) => $query->where('destination_id', $destinationId))),
+                    ->query(fn ($query, array $data) => $query->when($data['destination_id'] ?? null, fn ($query, $destinationId) => $query->where('destination_id', $destinationId))),
+            ])
+            ->recordActions([
+                ViewAction::make(),
+                Action::make('toggleRead')
+                    ->label(fn (ContactMessage $record): string => $record->is_read ? 'Mark unread' : 'Mark read')
+                    ->action(fn (ContactMessage $record) => $record->update(['is_read' => ! $record->is_read]))
+                    ->requiresConfirmation(),
+                DeleteAction::make(),
             ])
             ->defaultSort('created_at', 'desc');
     }

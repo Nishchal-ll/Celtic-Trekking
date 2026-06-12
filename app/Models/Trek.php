@@ -27,6 +27,9 @@ class Trek extends Model
         'included',
         'not_included',
         'is_active',
+        'is_fixed_departure',
+        'fixed_departure_badge',
+        'fixed_departure_order',
         'meta_title',
         'meta_description',
     ];
@@ -36,6 +39,7 @@ class Trek extends Model
         'included' => 'array',
         'not_included' => 'array',
         'is_active' => 'boolean',
+        'is_fixed_departure' => 'boolean',
         'price' => 'decimal:2',
     ];
 

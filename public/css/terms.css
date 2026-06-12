@@ -1,0 +1,238 @@
+/* ==========================================================================
+   Terms Layout Structural Core Base Configurations
+   ========================================================================== */
+.terms-main-container {
+  background-color: #fcfcfc;
+  padding: 65px 0 85px;
+  width: 100%;
+}
+
+.terms-grid-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 40px;
+}
+
+/* ==========================================================================
+   Panoramic Terms Header Banner Styling Rules
+   ========================================================================== */
+.terms-hero-banner {
+  width: 100%;
+  height: 340px;
+  background-size: cover;
+  background-position: center 35%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.terms-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.2);
+  z-index: 1;
+}
+
+.terms-hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  width: auto;
+  max-width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-terms-hero {
+  display: inline-block;
+  background-color: #518ee2;
+  color: #ffffff !important;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  letter-spacing: 1px;
+  padding: 12px 28px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-terms-hero:hover {
+  background-color: #3b7ad3;
+  transform: translateY(-0.5px);
+}
+
+/* ==========================================================================
+   Left Side Columns Typography Headings Styles
+   ========================================================================== */
+.terms-left-heading-col {
+  padding-top: 10px;
+}
+
+.terms-main-title {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.85rem;
+  font-weight: 400;
+  color: #475569;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.terms-sub-title {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Right Side Tab Component Actions Interface Setup
+   ========================================================================== */
+.terms-tab-navigation-row {
+  display: flex;
+  align-items: center;
+  background-color: #cbd5e1;
+  padding: 0;
+  margin-bottom: 32px;
+  border-radius: 2px;
+  width: fit-content;
+  overflow: hidden;
+}
+
+.terms-tab-btn {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #475569;
+  background: transparent;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.terms-tab-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #1e293b;
+}
+
+.terms-tab-btn.active {
+  background-color: #518ee2;
+  color: #ffffff;
+}
+
+.terms-tab-pane {
+  display: none;
+  animation: fadeInPane 0.4s ease;
+}
+
+.terms-tab-pane.active {
+  display: block;
+}
+
+/* ==========================================================================
+   RICH TEXT WRAPPER RULES (FIXES VIEWPORT OVERFLOW)
+   ========================================================================== */
+.rich-text-content {
+  width: 100%;
+  max-width: 100%;
+  word-break: break-word; /* Hard break continuous strings with no spaces */
+  overflow-wrap: break-word;
+  white-space: normal;
+  color: #555555;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.rich-text-content p {
+  margin-bottom: 16px;
+}
+
+/* Support for standard editor layout listings */
+.rich-text-content ul, 
+.rich-text-content ol {
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
+
+.rich-text-content li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Bottom Accent Horizontal CTA Bar
+   ========================================================================== */
+.terms-cta-bar {
+  background-color: #113885;
+  padding: 24px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.terms-cta-text {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Animation Keyframes Matrix
+   ========================================================================== */
+@keyframes fadeInPane {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Adaptive Viewport Media Queries Systems
+   ========================================================================== */
+@media (max-width: 900px) {
+  .terms-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .terms-left-heading-col {
+    text-align: center;
+  }
+  .terms-tab-navigation-row {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .terms-hero-banner {
+    height: 260px;
+  }
+}
+
+@media (max-width: 540px) {
+  .terms-tab-navigation-row {
+    width: 100%;
+    flex-direction: column;
+  }
+  .terms-tab-btn {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  .terms-main-title {
+    font-size: 1.5rem;
+  }
+}

@@ -241,7 +241,7 @@
             </div>
 
             <div class="section-cta">
-                <a href="{{ route('testimonials.index') }}" class="btn btn-outline">
+                <a href="{{ route('testimony') }}" class="btn btn-outline">
                     @lang('home.view_all_testimonials')
                 </a>
             </div>

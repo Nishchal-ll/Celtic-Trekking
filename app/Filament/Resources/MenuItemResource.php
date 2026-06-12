@@ -5,25 +5,28 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\MenuItemResource\Pages;
 use App\Models\MenuItem;
 use BackedEnum;
-use Filament\Resources\Form;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\EditAction;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Schemas\Schema;
+use Filament\Tables\Table;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 
 class MenuItemResource extends Resource
 {
     protected static ?string $model = MenuItem::class;
 
-    protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-menu';
+    protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-envelope';
     protected static ?string $navigationLabel = 'Menu Items';
     protected static ?string $pluralModelLabel = 'Menu Items';
     protected static ?string $modelLabel = 'Menu Item';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 TextInput::make('label')
                     ->required()
@@ -46,8 +49,12 @@ class MenuItemResource extends Resource
             ->columns([
                 TextColumn::make('label')->sortable()->searchable(),
                 TextColumn::make('url')->sortable()->searchable(),
-                TextColumn::make('open_in_new_tab')->boolean()->label('New Tab'),
+                IconColumn::make('open_in_new_tab')->boolean()->label('New Tab'),
                 TextColumn::make('order')->sortable(),
+            ])
+            ->recordActions([
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->defaultSort('order');
     }

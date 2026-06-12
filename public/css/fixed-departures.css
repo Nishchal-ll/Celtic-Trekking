@@ -1,7 +1,16 @@
+/* ==========================================================================
+   Page Structural Reset & Hero Banner Styling
+   ========================================================================== */
+body {
+  background: #f8fafc;
+  color: #334155;
+  margin: 0;
+}
+
 .page-hero {
   position: relative;
   width: 100%;
-  height: 240px;
+  height: 300px;
   overflow: hidden;
 }
 
@@ -16,203 +25,276 @@
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.15);
+  background: rgba(15, 23, 42, 0.25);
 }
 
 .hero-scroll-hint {
   position: absolute;
-  bottom: 18px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  color: rgba(255,255,255,0.8);
-  font-size: 1.2rem;
-  animation: bounce 1.8s infinite;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.3rem;
+  animation: bounce 2s infinite;
   z-index: 2;
 }
 
 @keyframes bounce {
-  0%, 100% {
-    transform: translateX(-50%) translateY(0);
-  }
-
-  50% {
-    transform: translateX(-50%) translateY(6px);
-  }
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-8px); }
+  60% { transform: translateX(-50%) translateY(-4px); }
 }
 
+/* ==========================================================================
+   Content Layout & Main Core Typography
+   ========================================================================== */
 .page-content {
-  background-color: #f5f5f5;
-  padding: 40px 0 60px;
+  background-color: #f8fafc;
+  padding: 60px 0 80px;
 }
 
 .content-inner {
-  max-width: 1200px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 .page-heading {
   font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 1.8rem;
-  font-weight: 400;
-  color: #1b2a4a;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #0f172a;
   margin-bottom: 8px;
+  letter-spacing: -0.5px;
 }
 
 .page-subtext {
   font-family: 'Lato', sans-serif;
-  font-size: 0.88rem;
-  color: #555;
-  margin-bottom: 24px;
+  font-size: 1rem;
+  color: #64748b;
+  margin-bottom: 36px;
+}
+
+/* ==========================================================================
+   Modern Country Segment Tab Bar Overhaul
+   ========================================================================== */
+.tab-container {
+  overflow-x: auto;
+  margin-bottom: 32px;
+  scrollbar-width: none; /* Firefox hiding scrollbars */
+}
+.tab-container::-webkit-scrollbar {
+  display: none; /* Chrome/Safari hiding scrollbars */
 }
 
 .tab-bar {
   display: flex;
-  border: 1px solid #ccc;
-  border-radius: 2px;
-  overflow: hidden;
-  width: fit-content;
-  margin-bottom: 30px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 6px;
+  border-radius: 30px;
+  width: max-content;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .tab-btn {
-  padding: 10px 28px;
+  padding: 10px 32px;
   font-family: 'Lato', sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   border: none;
   cursor: pointer;
-  background-color: #fff;
-  color: #555;
-  border-right: 1px solid #ccc;
-  transition: background-color 0.2s, color 0.2s;
+  background-color: transparent;
+  color: #64748b;
+  border-radius: 24px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.tab-btn:last-child {
-  border-right: none;
+.tab-btn i {
+  font-size: 0.9rem;
+  opacity: 0.7;
 }
 
 .tab-btn:hover {
-  background-color: #eee;
+  color: #1d3d8c;
+  background-color: #f1f5f9;
 }
 
 .tab-btn.active {
-  background-color: #3a6fd8;
-  color: #fff;
+  background-color: #1d3d8c;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(29, 61, 140, 0.25);
 }
 
+/* Tab Panels Activation Control */
 .tab-panel {
   display: none;
+  animation: fadeIn 0.4s ease;
 }
 
 .tab-panel.active {
   display: block;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Departures Table Design System (Isolated Cards Concept)
+   ========================================================================== */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+  border: 1px solid #e2e8f0;
+}
+
 .departures-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff;
+  background-color: #ffffff;
+  text-align: left;
 }
 
 .departures-table thead tr {
-  background-color: #2a4a70;
+  background-color: #1d3d8c;
 }
 
 .departures-table thead th {
   font-family: 'Lato', sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  color: #fff;
-  padding: 14px 18px;
-  text-align: left;
+  color: #ffffff;
+  padding: 16px 24px;
+  border: none;
 }
 
-.departures-table thead th:nth-child(2) {
-  width: 220px;
-}
+.departures-table thead th:nth-child(2) { width: 240px; }
+.departures-table thead th:nth-child(3) { width: 160px; }
 
-.departures-table thead th:nth-child(3) {
-  width: 140px;
-}
-
+/* Structural Rows System */
 .departures-table .row-circuit td {
-  padding: 14px 18px 8px;
+  padding: 20px 24px 10px;
   font-family: 'Lato', sans-serif;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 700;
-  color: #1b2a4a;
-  border-bottom: 1px solid #e0e0e0;
+  color: #0f172a;
+}
+
+.departures-table .row-circuit .tag-accent {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 6px;
+  display: inline-block;
 }
 
 .departures-table .row-date td {
-  padding: 8px 18px;
+  padding: 10px 24px 12px;
   font-family: 'Lato', sans-serif;
-  font-size: 0.88rem;
-  color: #444;
-  border-bottom: 1px solid #e8e8e8;
+  font-size: 0.95rem;
+  color: #475569;
 }
 
+/* Clean up blank column spacer artifacts */
 .departures-table .row-date td:first-child {
-  color: transparent;
+  visibility: hidden;
 }
 
+/* Elegant Segment Spacer Replacing Old Bold Border Line Breaks */
 .row-spacer td {
-  height: 14px;
-  border-bottom: 1px solid #ddd;
-  background-color: #f9f9f9;
+  height: 16px;
+  background-color: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
   padding: 0;
 }
 
+/* High Contrast Pill Badges */
 .status-badge {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .status-confirmed {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
 }
 
 .status-open {
-  background-color: #cce5ff;
-  color: #004085;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
 }
 
 .status-full {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+/* Footnotes Block Wrappers */
+.footnote-box {
+  margin-top: 32px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.warning-box {
+  border-left: 4px solid #f59e0b;
+  background-color: #fffbfe;
 }
 
 .footnote {
-  margin-top: 28px;
   font-family: 'Lato', sans-serif;
-  font-size: 0.84rem;
-  color: #555;
+  font-size: 0.9rem;
+  color: #475569;
   line-height: 1.7;
+  margin: 0 0 12px 0;
 }
+.footnote:last-child { margin-bottom: 0; }
+.footnote strong { color: #0f172a; }
 
+/* ==========================================================================
+   Footer Content / Custom Responsive Testimonial Row 
+   ========================================================================== */
 .testimonials-section {
   background-color: #1d3d8c;
-  padding: 50px 0;
+  padding: 60px 0;
 }
 
 .testimonials-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 240px 1fr;
   align-items: center;
-  gap: 40px;
-  max-width: 1200px;
+  gap: 60px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 .testimonial-left {
@@ -220,125 +302,171 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  min-width: 200px;
+  border-right: 1px solid rgba(255,255,255,0.15);
+  padding-right: 40px;
 }
 
 .testimonial-icons {
   display: flex;
   align-items: center;
-  gap: 14px;
-  color: rgba(255,255,255,0.85);
-  font-size: 1.1rem;
+  gap: 16px;
+  color: #f59e0b;
+  font-size: 1.3rem;
 }
 
 .testimonial-icons span {
   display: inline-block;
   width: 1px;
-  height: 32px;
-  background-color: rgba(255,255,255,0.3);
+  height: 28px;
+  background-color: rgba(255,255,255,0.25);
 }
 
 .btn-contact {
-  display: inline-block;
-  padding: 12px 28px;
-  background-color: #3a6fd8;
-  color: #fff;
-  text-decoration: none;
+  display: block;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 12px 24px;
+  background-color: #f59e0b;
+  color: #1d3d8c !important;
+  text-decoration: none !important;
   font-family: 'Lato', sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
 }
 
 .btn-contact:hover {
-  background-color: #2b5cb3;
+  background-color: #ffffff;
+  transform: translateY(-2px);
 }
 
 .testimonial-right {
-  flex: 1;
-  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .testimonial-slides-wrap {
   position: relative;
-  min-height: 90px;
+  min-height: 110px;
 }
 
 .t-slide {
   display: none;
+  animation: slideFade 0.5s ease-in-out;
 }
 
 .t-slide.active {
   display: block;
 }
 
+@keyframes slideFade {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
 .t-quote {
   font-family: 'Lato', sans-serif;
-  font-size: 1.25rem;
-  line-height: 1.65;
-  color: #fff;
-  font-weight: 700;
-  margin-bottom: 12px;
+  font-size: 1.35rem;
+  line-height: 1.6;
+  color: #ffffff;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0 0 14px 0;
 }
 
 .t-author {
   display: block;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.7);
   font-family: 'Lato', sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 18px;
 }
 
 .t-dots {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
-}
-
-.t-dot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background-color: transparent;
-  border: 2px solid rgba(255,255,255,0.6);
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.3s;
-}
-
-.t-dot.active {
-  background-color: #fff;
-  border-color: #fff;
-}
-
-.btn-contact {
   margin-top: 10px;
 }
 
-@media (max-width: 900px) {
-  .testimonials-inner {
-    flex-direction: column;
-  }
+.t-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid rgba(255,255,255,0.4);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
 
-  .departures-table thead th:nth-child(3),
-  .departures-table .row-circuit td:nth-child(3),
-  .departures-table .row-date td:nth-child(3) {
-    display: none;
+.t-dot:hover {
+  border-color: #ffffff;
+}
+
+.t-dot.active {
+  background-color: #f59e0b;
+  border-color: #f59e0b;
+  transform: scale(1.15);
+}
+
+/* ==========================================================================
+   Media Adaptive Queries Mobile/Tablet Breakpoints
+   ========================================================================== */
+@media (max-width: 991px) {
+  .testimonials-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .testimonial-left {
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 24px;
+  }
+  .btn-contact {
+    width: auto;
+    padding: 12px 40px;
+  }
+  .t-dots {
+    justify-content: center;
+  }
+  .testimonial-right {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  /* On small mobile viewports, transform table structure or support sliding horizontal views natively */
+  .departures-table thead th {
+    padding: 12px 14px;
+  }
+  .departures-table .row-circuit td {
+    padding: 16px 14px 6px;
+    font-size: 0.95rem;
+  }
+  .departures-table .row-date td {
+    padding: 6px 14px 12px;
+    font-size: 0.9rem;
+  }
+  .status-badge {
+    padding: 2px 8px;
+    font-size: 0.7rem;
   }
 }
 
 @media (max-width: 600px) {
   .page-hero {
-    height: 160px;
+    height: 180px;
   }
-
-  .departures-table thead th:nth-child(2) {
-    width: auto;
+  .page-heading {
+    font-size: 1.75rem;
   }
 }

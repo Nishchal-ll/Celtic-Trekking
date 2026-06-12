@@ -16,10 +16,12 @@ class ContactMessage extends Model
         'destination_id',
         'persons',
         'message',
+        'is_read',
     ];
 
     protected $casts = [
         'persons' => 'integer',
+        'is_read' => 'boolean',
     ];
 
     public function destination()

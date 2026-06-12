@@ -4,8 +4,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TrekkingController;
 use App\Models\ContactMessage;
 use App\Models\Destination;
+use App\Models\TermsCondition;
+use App\Models\Testimonial;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,37 +30,47 @@ Route::prefix('trekking')->name('trekking.')->group(function () {
         return redirect()->route('trekking.nepal');
     })->name('index');
 
-    Route::get('/nepal', function () {
-        return view('trekking.nepal');
-    })->name('nepal');
-
-    Route::get('/tibet', function () {
-        return view('trekking.tibet');
-    })->name('tibet');
-
-    Route::get('/maroc', function () {
-        return view('trekking.maroc');
-    })->name('maroc');
-
-    Route::get('/roumanie', function () {
-        return view('trekking.roumanie');
-    })->name('roumanie');
+    Route::get('/nepal', [TrekkingController::class, 'show'])->defaults('destination', 'nepal')->name('nepal');
+    Route::get('/{destination}', [TrekkingController::class, 'show'])->name('show');
 });
 
 // Fixed Departures
-Route::get('/departs-fixes', function () {
-    return view('fixed-departures');
+Route::get('/fixed-departures', function () {
+    try {
+        $fixedDepartureDestinations = Destination::query()
+            ->whereHas('fixedDepartureTreks.departures')
+            ->with(['fixedDepartureTreks.departures' => function ($query) {
+                $query->orderBy('departure_date');
+            }])
+            ->orderBy('order')
+            ->orderBy('name')
+            ->get();
+
+        $testimonials = Testimonial::where('is_approved', true)
+            ->orderBy('created_at', 'desc')
+            ->take(4)
+            ->get();
+    } catch (\Throwable) {
+        $fixedDepartureDestinations = collect();
+        $testimonials = collect();
+    }
+
+    return view('fixed-departures', compact('fixedDepartureDestinations', 'testimonials'));
 })->name('fixed-departures');
 
+Route::redirect('/departs-fixes', '/fixed-departures', 301);
+
 // Agency
-Route::get('/agence-celtic', function () {
-    return view('agency');
-})->name('agency');
+Route::get('/agency', [App\Http\Controllers\AgencyController::class, 'index'])
+    ->name('agency');
+
+Route::redirect('/agence-celtic', '/agency', 301);
 
 // Testimonials
-Route::get('/temoignage', function () {
-    return view('testimony');
-})->name('testimony');
+Route::get('/testimonials', [App\Http\Controllers\TestimonialController::class, 'index'])
+    ->name('testimony');
+
+Route::redirect('/temoignage', '/testimonials', 301);
 
 // Contact
 Route::get('/contact', function () {
@@ -66,9 +79,18 @@ Route::get('/contact', function () {
     ]);
 })->name('contact');
 
-Route::get('/mentions-legales', function () {
+Route::get('/legal-notice', function () {
     return view('legal');
 })->name('legal');
+
+Route::get('/terms-and-conditions', function () {
+    $terms = TermsCondition::latest()->first();
+
+    return view('terms', compact('terms'));
+})->name('terms');
+
+Route::redirect('/terms', '/terms-and-conditions', 301);
+Route::redirect('/mentions-legales', '/legal-notice', 301);
 
 Route::post('/contact/send', function (Request $request) {
     $data = $request->validate([
@@ -90,5 +112,5 @@ Route::post('/contact/send', function (Request $request) {
         'message' => $data['message'] ?? null,
     ]);
 
-    return redirect()->route('contact')->with('success', 'Votre message a été envoyé avec succès.');
+    return redirect()->route('contact')->with('success', 'Your Message has been sent Successfully.');
 })->name('contact.send');

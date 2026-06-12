@@ -3,10 +3,14 @@
 namespace Database\Seeders;
 
 use App\Models\Destination;
+use App\Models\FooterLink;
+use App\Models\MenuItem;
+use App\Models\Setting;
 use App\Models\Slide;
 use App\Models\Testimonial;
 use App\Models\Trek;
 use App\Models\User;
+use App\Models\AgencyPage;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -102,6 +106,89 @@ class DatabaseSeeder extends Seeder
 
         foreach ($slides as $slide) {
             Slide::create($slide);
+        }
+
+        // Seed Settings
+        $settings = [
+            'site_name' => 'Celtic Trekking',
+            'logo' => 'logo/settings-logo.png',
+            'address' => 'GPO Box: 11661, 7 Corner Street, Thamel',
+            'address_line_2' => 'Kathmandu, Nepal',
+            'phone' => '+977-1-4701205',
+            'email' => 'contact@celtictrekking.com',
+            'uddhav_phone' => '9841 78 67 78',
+            'krishna_phone' => '9841 41 31 67',
+            'facebook_url' => 'https://www.facebook.com/celtictrekking',
+            'instagram_url' => 'https://www.instagram.com/celtictrekking',
+            'twitter_url' => 'https://twitter.com/celtictrekking',
+            'youtube_url' => 'https://www.youtube.com/c/CelticTrekking',
+            'map_embed' => '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.718788815331!2d85.31027391504348!3d27.712258082808938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb190f27b3ea8f%3A0xf4f9794a34bc3b6a!2sThamel%2C%20Kathmandu%2044600!5e0!3m2!1sen!2snp!4v1718529371081!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+            'opening_time' => '08:00',
+            'closing_time' => '18:00',
+        ];
+
+        foreach ($settings as $key => $value) {
+            Setting::updateOrCreate(
+                ['key' => $key],
+                ['value' => $value]
+            );
+        }
+
+        // Seed Menu Items
+        $menuItems = [
+            ['label' => 'Home', 'url' => route('home'), 'open_in_new_tab' => false, 'order' => 1],
+            ['label' => 'Trekking', 'url' => route('trekking.index'), 'open_in_new_tab' => false, 'order' => 2],
+            ['label' => 'Fixed Departures', 'url' => route('fixed-departures'), 'open_in_new_tab' => false, 'order' => 3],
+            ['label' => 'Celtic Agency', 'url' => route('agency'), 'open_in_new_tab' => false, 'order' => 4],
+            ['label' => 'Testimonials', 'url' => route('testimony'), 'open_in_new_tab' => false, 'order' => 5],
+            ['label' => 'Contact', 'url' => route('contact'), 'open_in_new_tab' => false, 'order' => 6],
+        ];
+
+        foreach ($menuItems as $menuItem) {
+            MenuItem::firstOrCreate(
+                ['label' => $menuItem['label']],
+                $menuItem
+            );
+        }
+
+        // Seed Agency Page
+        AgencyPage::updateOrCreate(
+            ['title' => 'The Celtic Trekking Agency'],
+            [
+                'title' => 'The Celtic Trekking Agency',
+                'intro_content' => <<<'HTML'
+<p><strong>Our great adventure began in 1992</strong> when Olivier Kerviel married Sarita and moved to Nepal. This is where the Celtic Trekking agency was born. Was there a better place than Nepal to embark on treks and hiking? Our team has grown over the years and today there are around twenty people who give the best of ourselves to advise you and support you the most beautiful hikes that exist on the roof of the world.</p>
+<p>After 20 years in the service of <strong>Celtic Trekking</strong>, Olivier Kerviel handed over to Uddhav Pokharel and Krishna Raj Giri, two French-speaking Nepalese.</p>
+HTML,
+                'ethics_content' => <<<'HTML'
+<h3>Our know-how and our ethics</h3>
+<p>On all the destinations and treks we offer, we rely on <strong>competent and professional local teams</strong> which we pay in a healthy and generous way. <strong>All our guides are state qualified and regularly follow advanced training sessions</strong> (mountaineering, first aid, etc.). They all speak one or two foreign languages, sometimes more...</p>
+<p>They of course have perfect knowledge of the terrain which allows us to take you on a safe journey and help you discover all the attractions of the regions you pass through, always with respect for everyone. Solidarity, fair and sustainable tourism is in fashion at the moment! Some people write pages about it on their brochures and websites, yet it is quite different in the field.</p>
+<p><strong>In Nepal,</strong> our guides, porters and cooks have been receiving much higher than average salaries for a decade. All staff are insured by a local company: NECO Insurance.</p>
+<p>We ensure that the porters' equipment is correct, even if of course they do not have the same High Tech clothing on their backs as Western trekkers.</p>
+<p><strong>In Morocco,</strong> unlike many agencies, we pay the salaries of guides, camel drivers, mule drivers and cooks from the start of the trek. It is therefore with a free mind and high morale that they give the best of themselves during your hike. There are still too many agencies, and not the least, which pay the accompanying teams weeks or even months after the trek. Sometimes never even!!!!!! None of that with us. Guides and mule drivers will be able to attest to this.</p>
+<p>In short, we offer you fair treks, namely treks where everyone meets: You, the trekker who benefits from <strong>a fair price and quality services</strong>, the accompanying teams who are paid decently with ideal working conditions, and the various stakeholders (hosts, merchants, transporters, etc.) who sell their products and services at the right price.</p>
+<p>Since 1992, our clientele has continued to increase and we are very proud of it. We know well that a small structure like ours, which <strong>favors human relationships and the values of being over having</strong>, responds to the aspirations of a growing part of the "traveling population" who wish to break with the logic of the consumer society.</p>
+<p><strong>Travel certainly, but travel intelligently by trusting those who will help you discover with respect and exchange. Come do it with us.</strong></p>
+HTML,
+                'is_active' => true,
+            ]
+        );
+
+        // Seed Footer Links
+        $footerLinks = [
+            ['title' => 'Contact Us', 'url' => route('contact'), 'order' => 1],
+            ['title' => 'Celtic Agency', 'url' => route('agency'), 'order' => 2],
+            ['title' => 'Fixed Departures', 'url' => route('fixed-departures'), 'order' => 3],
+            ['title' => 'Testimonials', 'url' => route('testimony'), 'order' => 4],
+            ['title' => 'Legal', 'url' => route('legal'), 'order' => 5],
+        ];
+
+        foreach ($footerLinks as $footerLink) {
+            FooterLink::firstOrCreate(
+                ['title' => $footerLink['title']],
+                $footerLink
+            );
         }
 
         // Seed Testimonials

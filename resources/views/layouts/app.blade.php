@@ -6,7 +6,9 @@
     <meta name="google" content="notranslate">
     <meta name="description" content="Celtic Trekking is 20 years of experience, with local professional teams to support you: Nepal, Tibet, Romania and Morocco.">
     <meta name="keywords" content="trek, népal, tibet, maroc, roumanie, randonnée, trekking, celtic trekking, everest, himalaya">
-    <title>@yield('title', 'Nepal Trekking: Plan treks and hikes with Celtic Trekking')</title>
+   <link rel="icon" type="image/x-icon" href="{{ asset('logo.png') }}">
+  
+  <title>Nepal Trekking: Plan treks and hikes with Celtic Trekking</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

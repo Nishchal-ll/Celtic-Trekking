@@ -5,12 +5,17 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\DestinationResource\Pages;
 use App\Models\Destination;
 use BackedEnum;
-use Filament\Resources\Form;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\EditAction;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Schemas\Schema;
+use Filament\Tables\Table;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 
 class DestinationResource extends Resource
@@ -22,9 +27,9 @@ class DestinationResource extends Resource
     protected static ?string $pluralModelLabel = 'Destinations';
     protected static ?string $modelLabel = 'Destination';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 TextInput::make('name')
                     ->required()
@@ -38,13 +43,41 @@ class DestinationResource extends Resource
                 TextInput::make('continent')
                     ->required()
                     ->maxLength(255),
-                TextInput::make('image')
+                FileUpload::make('image')
+                    ->image()
+                    ->directory('destinations')
+                    ->disk('public')
                     ->required()
+                    ->label('Destination image'),
+                FileUpload::make('banner_image')
+                    ->image()
+                    ->directory('destinations/banners')
+                    ->disk('public')
+                    ->label('Banner image'),
+                TextInput::make('hero_title')
                     ->maxLength(255)
-                    ->label('Image path'),
-                TextInput::make('banner_image')
+                    ->label('Trekking page hero title'),
+                TextInput::make('hero_subtitle')
                     ->maxLength(255)
-                    ->label('Banner image path'),
+                    ->label('Trekking page hero subtitle'),
+                TextInput::make('intro_title')
+                    ->maxLength(255)
+                    ->label('Intro title'),
+                RichEditor::make('intro_content')
+                    ->label('Intro content')
+                    ->columnSpanFull(),
+                FileUpload::make('intro_gallery')
+                    ->image()
+                    ->multiple()
+                    ->directory('destinations/intro-gallery')
+                    ->disk('public')
+                    ->label('Intro gallery'),
+                TextInput::make('info_title')
+                    ->maxLength(255)
+                    ->label('Info strip title'),
+                RichEditor::make('info_content')
+                    ->label('Info strip content')
+                    ->columnSpanFull(),
                 Toggle::make('is_featured')
                     ->label('Featured destination')
                     ->default(false),
@@ -66,8 +99,12 @@ class DestinationResource extends Resource
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('country')->sortable(),
                 TextColumn::make('continent')->sortable(),
-                TextColumn::make('is_featured')->boolean()->label('Featured'),
+                IconColumn::make('is_featured')->boolean()->label('Featured'),
                 TextColumn::make('order')->sortable(),
+            ])
+            ->recordActions([
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->defaultSort('order');
     }
