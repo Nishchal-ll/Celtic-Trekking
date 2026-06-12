@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\SettingResource\Pages;
 use App\Models\Setting;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Resources\Resource;
@@ -21,6 +22,7 @@ class SettingResource extends Resource
     protected static ?string $model = Setting::class;
 
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-cog';
+      protected static UnitEnum|string|null $navigationGroup = 'Website Configuration';
     protected static ?string $navigationLabel = 'Site Settings';
     protected static ?string $pluralModelLabel = 'Site Settings';
     protected static ?string $modelLabel = 'Setting';
@@ -39,13 +41,13 @@ class SettingResource extends Resource
                     ->directory(fn (?Setting $record) => $record && $record->key === 'logo' ? 'logo' : 'settings')
                     ->image()
                     ->imagePreviewHeight('125')
-                    ->visibility('public')
+                    ->visible(fn (callable $get, ?Setting $record) => ($record && $record->key === 'logo') || $get('key') === 'logo')
                     ->helperText('Upload a logo image only when key is "logo". For other settings, use the plain text setting editor.'),
                 Textarea::make('value')
                     ->label('Value')
                     ->rows(4)
                     ->placeholder('Enter text, URL link, or paste iframe embed elements here...')
-                    ->visible(fn (?Setting $record) => $record === null || $record->key !== 'logo'),
+                    ->visible(fn (callable $get, ?Setting $record) => ! (($record && $record->key === 'logo') || $get('key') === 'logo')),
             ]);
     }
 

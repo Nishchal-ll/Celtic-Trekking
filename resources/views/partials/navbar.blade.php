@@ -33,8 +33,11 @@
           Trekking <i class="fa fa-angle-down dropdown-caret"></i>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="{{ route('trekking.nepal') }}">Nepal Trekking</a></li>
-
+          @forelse($trekkingDestinations ?? collect() as $destination)
+            <li><a href="{{ route('trekking.show', ['destination' => $destination->slug]) }}">{{ $destination->name }} Trekking</a></li>
+          @empty
+            <li><a href="{{ route('trekking.nepal') }}">Nepal Trekking</a></li>
+          @endforelse
         </ul>
       </li>
 

@@ -72,8 +72,8 @@
     </div>
 
     <div class="footer-bottom">
-        <div class="container">
-            <p>&copy; 2026 - Celtic Trekking. All rights reserved.</p>
+        <div class="container footer-bottom-inner">
+            <p class="footer-copy">&copy; 2026 Celtic Trekking. All rights reserved.</p>
             <p class="developer-credit-line">Designed and developed by <a href="http://www.acharyanishchal.com.np" target="_blank" rel="noopener noreferrer">Nishchal</a></p>
         </div>
     </div>

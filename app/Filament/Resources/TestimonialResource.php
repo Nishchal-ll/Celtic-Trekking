@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TestimonialResource\Pages;
 use App\Models\Testimonial;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\CreateAction;
@@ -25,6 +26,7 @@ class TestimonialResource extends Resource
     protected static ?string $model = Testimonial::class;
 
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-chat-bubble-oval-left';
+     protected static UnitEnum|string|null $navigationGroup = 'Customer Interaction';
     protected static ?string $navigationLabel = 'Testimonials';
     protected static ?string $pluralModelLabel = 'Testimonials';
     protected static ?string $modelLabel = 'Testimonial';

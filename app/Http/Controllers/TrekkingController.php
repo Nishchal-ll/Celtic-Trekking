@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Destination;
+use App\Models\Testimonial;
 use Illuminate\View\View;
 
 class TrekkingController extends Controller
@@ -19,6 +20,11 @@ class TrekkingController extends Controller
             }])
             ->firstOrFail();
 
-        return view('trekking.show', compact('destination'));
+        $testimonials = Testimonial::where('is_approved', true)
+            ->orderBy('created_at', 'desc')
+            ->take(3)
+            ->get();
+
+        return view('trekking.show', compact('destination', 'testimonials'));
     }
 }

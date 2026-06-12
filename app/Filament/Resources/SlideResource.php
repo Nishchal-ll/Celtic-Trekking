@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\SlideResource\Pages;
 use App\Models\Slide;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Resources\Resource;
@@ -22,6 +23,7 @@ class SlideResource extends Resource
     protected static ?string $model = Slide::class;
 
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-envelope';
+      protected static UnitEnum|string|null $navigationGroup = 'Website Configuration';
     protected static ?string $navigationLabel = 'Hero Slides';
     protected static ?string $pluralModelLabel = 'Hero Slides';
     protected static ?string $modelLabel = 'Hero Slide';

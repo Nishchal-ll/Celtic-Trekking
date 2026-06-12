@@ -29,13 +29,7 @@ class HomeController extends Controller
                 ->orderBy('order')
                 ->get()
                 ->map(function (Destination $destination) {
-                    $routeMap = [
-                        'nepal' => route('trekking.nepal'),
-                        'tibet' => route('trekking.tibet'),
-                        'maroc' => route('trekking.maroc'),
-                        'roumanie' => route('trekking.roumanie'),
-                    ];
-
+            
                     $destination->link = $routeMap[$destination->slug] ?? route('trekking.index');
 
                     return $destination;

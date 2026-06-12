@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TrekkingResource\Pages;
 use App\Models\Trek;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\FileUpload;
@@ -25,6 +26,7 @@ class TrekkingResource extends Resource
     protected static ?string $model = Trek::class;
 
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-map';
+     protected static UnitEnum|string|null $navigationGroup = 'Travel & Booking Management';
     protected static ?string $navigationLabel = 'Trekking';
     protected static ?string $pluralModelLabel = 'Treks';
     protected static ?string $modelLabel = 'Trek';
@@ -45,27 +47,7 @@ class TrekkingResource extends Resource
                 ->directory('treks')
                 ->disk('public')
                 ->label('Main image'),
-            FileUpload::make('gallery')
-                ->image()
-                ->multiple()
-                ->directory('treks/gallery')
-                ->disk('public'),
             TextInput::make('duration_days')->numeric()->required()->minValue(1),
-            Select::make('difficulty')
-                ->options([
-                    1 => 'Easy',
-                    2 => 'Moderate',
-                    3 => 'Challenging',
-                    4 => 'Difficult',
-                    5 => 'Extreme',
-                ])
-                ->default(2)
-                ->required(),
-            TextInput::make('max_altitude')->numeric()->label('Max altitude'),
-            TextInput::make('best_season')->maxLength(255),
-            TextInput::make('group_size_min')->numeric()->default(2),
-            TextInput::make('group_size_max')->numeric()->default(12),
-            TextInput::make('price')->numeric()->default(0)->required(),
             Textarea::make('short_description')->maxLength(1000),
             Textarea::make('description')->columnSpanFull(),
             Toggle::make('is_active')->default(true),
@@ -75,18 +57,12 @@ class TrekkingResource extends Resource
                     TextInput::make('day')->numeric()->required(),
                     TextInput::make('title')->required()->maxLength(255),
                     Textarea::make('description')->columnSpanFull(),
-                    TextInput::make('walking_time')->maxLength(255),
-                    TextInput::make('altitude')->numeric(),
-                    TextInput::make('accommodation')->maxLength(255),
-                    TextInput::make('meals')->maxLength(255),
                 ])
-                ->columns(2)
+                ->columns(1)
                 ->defaultItems(0)
                 ->addActionLabel('Add itinerary day')
                 ->orderColumn('day')
                 ->columnSpanFull(),
-            TextInput::make('meta_title')->maxLength(255),
-            Textarea::make('meta_description'),
         ]);
     }
 
@@ -97,7 +73,6 @@ class TrekkingResource extends Resource
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('destination.name')->label('Destination')->sortable()->searchable(),
                 TextColumn::make('duration_days')->label('Days')->sortable(),
-                TextColumn::make('price')->money('eur')->sortable(),
                 IconColumn::make('is_active')->boolean()->label('Active'),
             ])
             ->filters([

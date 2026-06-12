@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AgencyPageResource\Pages;
 use App\Models\AgencyPage;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\FileUpload;
@@ -22,6 +23,7 @@ class AgencyPageResource extends Resource
     protected static ?string $model = AgencyPage::class;
 
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-building-office';
+     protected static UnitEnum|string|null $navigationGroup = 'Website Configuration';
     protected static ?string $navigationLabel = 'Celtic Agency';
     protected static ?string $pluralModelLabel = 'Celtic Agency Pages';
     protected static ?string $modelLabel = 'Celtic Agency Page';

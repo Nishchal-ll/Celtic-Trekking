@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\DestinationResource\Pages;
 use App\Models\Destination;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Resources\Resource;
@@ -24,6 +25,7 @@ class DestinationResource extends Resource
 
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-map';
     protected static ?string $navigationLabel = 'Destinations';
+    protected static UnitEnum|string|null $navigationGroup = 'Travel & Booking Management';
     protected static ?string $pluralModelLabel = 'Destinations';
     protected static ?string $modelLabel = 'Destination';
 
@@ -40,9 +42,6 @@ class DestinationResource extends Resource
                 TextInput::make('country')
                     ->required()
                     ->maxLength(255),
-                TextInput::make('continent')
-                    ->required()
-                    ->maxLength(255),
                 FileUpload::make('image')
                     ->image()
                     ->directory('destinations')
@@ -54,12 +53,6 @@ class DestinationResource extends Resource
                     ->directory('destinations/banners')
                     ->disk('public')
                     ->label('Banner image'),
-                TextInput::make('hero_title')
-                    ->maxLength(255)
-                    ->label('Trekking page hero title'),
-                TextInput::make('hero_subtitle')
-                    ->maxLength(255)
-                    ->label('Trekking page hero subtitle'),
                 TextInput::make('intro_title')
                     ->maxLength(255)
                     ->label('Intro title'),
@@ -72,12 +65,6 @@ class DestinationResource extends Resource
                     ->directory('destinations/intro-gallery')
                     ->disk('public')
                     ->label('Intro gallery'),
-                TextInput::make('info_title')
-                    ->maxLength(255)
-                    ->label('Info strip title'),
-                RichEditor::make('info_content')
-                    ->label('Info strip content')
-                    ->columnSpanFull(),
                 Toggle::make('is_featured')
                     ->label('Featured destination')
                     ->default(false),
@@ -86,7 +73,6 @@ class DestinationResource extends Resource
                     ->default(0),
                 TextInput::make('meta_title')
                     ->maxLength(255),
-                Textarea::make('short_description'),
                 Textarea::make('description'),
                 Textarea::make('meta_description'),
             ]);
@@ -98,7 +84,6 @@ class DestinationResource extends Resource
             ->columns([
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('country')->sortable(),
-                TextColumn::make('continent')->sortable(),
                 IconColumn::make('is_featured')->boolean()->label('Featured'),
                 TextColumn::make('order')->sortable(),
             ])

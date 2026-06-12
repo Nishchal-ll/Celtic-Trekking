@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\FixedDepartureResource\Pages;
 use App\Models\Trek;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\DatePicker;
@@ -26,6 +27,7 @@ class FixedDepartureResource extends Resource
     protected static ?string $model = Trek::class;
 
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-calendar-days';
+     protected static UnitEnum|string|null $navigationGroup = 'Travel & Booking Management';
     protected static ?string $navigationLabel = 'Fixed Departures';
     protected static ?string $pluralModelLabel = 'Fixed Departures';
     protected static ?string $modelLabel = 'Fixed Departure Tour';

@@ -32,7 +32,7 @@
         <div class="tab-bar">
           @foreach($fixedDepartureDestinations as $idx => $destination)
             <button class="tab-btn {{ $idx === 0 ? 'active' : '' }}" data-tab="{{ $destination->slug }}">
-              <i class="fa fa-map-o"></i> {{ $destination->country ?: $destination->name }}
+              <i class="fa fa-map-o"></i> {{ $destination->name }}
             </button>
           @endforeach
         </div>

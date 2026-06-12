@@ -54,10 +54,14 @@
         <hr class="divider">
 
         <div class="trek-links">
-          <a href="#" class="btn-trek">Our Tibet Treks</a>
-          <a href="#" class="btn-trek">Our Nepal Treks</a>
-          <a href="#" class="btn-trek">Our Morocco Treks</a>
-          <a href="#" class="btn-trek">Our Romania Treks</a>
+          @forelse($trekkingDestinations->take(4) as $destination)
+            <a href="{{ route('trekking.show', ['destination' => $destination->slug]) }}" class="btn-trek">Our {{ $destination->name }} Treks</a>
+          @empty
+            <a href="#" class="btn-trek">Our Tibet Treks</a>
+            <a href="#" class="btn-trek">Our Nepal Treks</a>
+            <a href="#" class="btn-trek">Our Morocco Treks</a>
+            <a href="#" class="btn-trek">Our Romania Treks</a>
+          @endforelse
         </div>
 
         <div class="social-icons">

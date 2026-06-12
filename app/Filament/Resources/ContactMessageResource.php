@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ContactMessageResource\Pages;
 use App\Models\ContactMessage;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
@@ -23,6 +24,7 @@ class ContactMessageResource extends Resource
     protected static ?string $model = ContactMessage::class;
 
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-envelope';
+     protected static UnitEnum|string|null $navigationGroup = 'Customer Interaction';
     protected static ?string $navigationLabel = 'Contact Messages';
     protected static ?string $pluralModelLabel = 'Contact Messages';
     protected static ?string $modelLabel = 'Contact Message';

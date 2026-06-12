@@ -7,6 +7,7 @@ use App\Models\FooterLink;
 use App\Models\MenuItem;
 use App\Models\Setting;
 use App\Models\Slide;
+use App\Models\TermsCondition;
 use App\Models\Testimonial;
 use App\Models\Trek;
 use App\Models\User;
@@ -172,6 +173,37 @@ HTML,
 <p><strong>Travel certainly, but travel intelligently by trusting those who will help you discover with respect and exchange. Come do it with us.</strong></p>
 HTML,
                 'is_active' => true,
+            ]
+        );
+
+        TermsCondition::updateOrCreate(
+            [],
+            [
+                'rates' => <<<'HTML'
+<ul>
+    <li>The prices for each trek and excursion will be communicated to you by e-mail within 48 hours after your request for information and quotation.</li>
+    <li>Depending on your wishes, the length of stay, your budget, the fairest and most competitive price will be set.</li>
+    <li>We do not charge any processing fees.</li>
+    <li>If for reasons beyond our control, the duration of your excursion is extended, a price surcharge will be made.</li>
+    <li>The services included and not included in the prices will be specified to you for each circuit.</li>
+    <li>Our services (NEPAL/TIBET) are priced in US Dollars since it is the currency considered for commercial transactions in tourism in Nepal. You are free to pay in Euros if you wish. If so, the exchange rate will be calculated at the rate of the day of payment, less a bank commission (1%). Given the Euro rate since 2005, you are a big winner!</li>
+</ul>
+HTML,
+                'bookings' => <<<'HTML'
+<ul>
+    <li>They are done by e-mail, fax or telephone. You must tell us the chosen stay, the desired departure/return dates and the number of participants. We will then send you a registration form to return to us by email.</li>
+    <li>A reservation deposit worth 100 EUROS per person must be paid. We will give you by email the (very simple) procedure to follow.</li>
+    <li>The balance of the trek will be paid in full upon your arrival in the destination country.</li>
+    <li>If you cancel your reservation less than fifteen days before the scheduled departure date, your deposit will not be returned to you.</li>
+    <li>A cancellation on your part more than 15 days before the scheduled departure date will see you recover 50% of your deposit.</li>
+</ul>
+HTML,
+                'insurance' => <<<'HTML'
+<ul>
+    <li>The agency does not offer this service for trekkers. Only our teams (guides, sherpas, cooks, porters...) are provided by a local agency.</li>
+    <li>So take out assistance insurance from your country (covering possible repatriation by helicopter) for which you will give us the contact details. We give you more information on this subject in the practical information we give after your reservation.</li>
+</ul>
+HTML,
             ]
         );
 

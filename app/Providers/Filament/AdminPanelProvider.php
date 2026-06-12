@@ -32,6 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandLogo(asset('logo.png'))
+            ->favicon(asset('logo.png'))
             ->brandLogoHeight('3.5rem') 
             ->brandName('Celtic Trekking')
             ->colors([

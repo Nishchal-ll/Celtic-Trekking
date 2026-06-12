@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\MenuItemResource\Pages;
 use App\Models\MenuItem;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Resources\Resource;
@@ -20,6 +21,7 @@ class MenuItemResource extends Resource
     protected static ?string $model = MenuItem::class;
 
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-envelope';
+      protected static UnitEnum|string|null $navigationGroup = 'Website Configuration';
     protected static ?string $navigationLabel = 'Menu Items';
     protected static ?string $pluralModelLabel = 'Menu Items';
     protected static ?string $modelLabel = 'Menu Item';

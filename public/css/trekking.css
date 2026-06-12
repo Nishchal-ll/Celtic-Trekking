@@ -1,0 +1,556 @@
+/* ==========================================================================
+   Page Structural Reset & Hero Banner Styling
+   ========================================================================== */
+body {
+  background: #f8fafc;
+  color: #334155;
+  margin: 0;
+}
+
+.page-hero {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.page-hero-image {
+  width: 100%;
+  height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1486911278844-a81c5267e227?auto=format&fit=crop&w=1600&q=80');
+  background-size: cover;
+  background-position: center 55%;
+}
+
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.25);
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.3rem;
+  animation: bounce 2s infinite;
+  z-index: 2;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-8px); }
+  60% { transform: translateX(-50%) translateY(-4px); }
+}
+
+/* ==========================================================================
+   Content Layout & Main Core Typography
+   ========================================================================== */
+.intro-section {
+  background-color: #f8fafc;
+  padding: 60px 0 40px;
+}
+
+.intro-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 460px;
+  gap: 50px;
+  align-items: center;
+}
+
+.page-heading {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.intro-paragraph-wrap p {
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #475569;
+  margin-bottom: 16px;
+}
+
+.intro-paragraph-wrap p strong {
+  color: #1d3d8c;
+  font-weight: 700;
+}
+
+.btn-devis {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: #f59e0b;
+  color: #1d3d8c !important;
+  text-decoration: none !important;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+  margin-top: 10px;
+}
+
+.btn-devis:hover {
+  background-color: #1d3d8c;
+  color: #ffffff !important;
+  transform: translateY(-1.5px);
+}
+
+/* Intro Slider Frame Box */
+.intro-slider-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
+  border: 1px solid #e2e8f0;
+}
+
+.intro-slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #ffffff;
+}
+
+.intro-slider img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.intro-slider img.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 23, 42, 0.6);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.slider-arrow:hover { background-color: #1d3d8c; }
+.slider-arrow.prev { left: 16px; }
+.slider-arrow.next { right: 16px; }
+
+/* ==========================================================================
+   Pill Segment Tab Bar Alignment Framework
+   ========================================================================== */
+.detail-section {
+  background-color: #f8fafc;
+  padding: 20px 0 80px;
+}
+
+.detail-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-heading {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 28px;
+  letter-spacing: -0.5px;
+}
+
+.tab-container {
+  overflow-x: auto;
+  margin-bottom: 32px;
+  scrollbar-width: none;
+}
+.tab-container::-webkit-scrollbar { display: none; }
+
+.tab-bar {
+  display: flex;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 6px;
+  border-radius: 30px;
+  width: max-content;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.tab-btn {
+  padding: 10px 28px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: #64748b;
+  border-radius: 24px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-btn:hover {
+  color: #1d3d8c;
+  background-color: #f1f5f9;
+}
+
+.tab-btn.active {
+  background-color: #1d3d8c;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(29, 61, 140, 0.25);
+}
+
+/* Tab Panels Activation System */
+.tab-panel {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Two Column Circuit Presentation Grid 
+   ========================================================================== */
+.trek-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.trek-detail-left {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.02);
+}
+
+.trek-img-wrapper {
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  aspect-ratio: 16 / 9;
+}
+
+.trek-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trek-detail-meta {
+  font-family: 'Lato', sans-serif;
+}
+
+.duration-text {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 14px 0;
+}
+
+.precisions-block strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.desc-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Action Layout System Components
+   ========================================================================== */
+.detail-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.btn-action {
+  display: block;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none !important;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-info {
+  background-color: #e0f2fe;
+  color: #0369a1 !important;
+  border: 1px solid #bae6fd;
+}
+.btn-info:hover {
+  background-color: #0369a1;
+  color: #ffffff !important;
+}
+
+.btn-temoignage, .btn-departs {
+  background-color: #f1f5f9;
+  color: #475569 !important;
+  border: 1px solid #e2e8f0;
+}
+.btn-temoignage:hover, .btn-departs:hover {
+  background-color: #1d3d8c;
+  color: #ffffff !important;
+  border-color: #1d3d8c;
+}
+
+/* ==========================================================================
+   Right Side Column: Flat Grey Timeline Structural Frame
+   ========================================================================== */
+.trek-detail-right {
+  background-color: #e9e9e9;
+  border-radius: 12px;
+  padding: 30px;
+  border: 1px solid #e2e8f0;
+}
+
+.itinerary-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.day-item {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.day-item strong {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+/* Footnotes Block Wrappers */
+.footnote-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  border-radius: 12px;
+}
+.footnote {
+  font-family: 'Lato', sans-serif;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Footer Component: Testimonial Highlight Segment Block
+   ========================================================================== */
+.testimonials-section {
+  background-color: #1d3d8c;
+  padding: 60px 0;
+}
+
+.testimonials-inner {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  align-items: center;
+  gap: 60px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.testimonial-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border-right: 1px solid rgba(255,255,255,0.15);
+  padding-right: 40px;
+}
+
+.testimonial-icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #f59e0b;
+  font-size: 1.3rem;
+}
+
+.testimonial-icons span {
+  display: inline-block;
+  width: 1px;
+  height: 28px;
+  background-color: rgba(255,255,255,0.25);
+}
+
+.btn-contact {
+  display: block;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 12px 24px;
+  background-color: #f59e0b;
+  color: #1d3d8c !important;
+  text-decoration: none !important;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+
+.btn-contact:hover {
+  background-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.testimonial-right {
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-slides-wrap {
+  position: relative;
+  min-height: 110px;
+}
+
+.t-slide {
+  display: none;
+  animation: slideFade 0.5s ease-in-out;
+}
+
+.t-slide.active {
+  display: block;
+}
+
+@keyframes slideFade {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.t-quote {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.35rem;
+  line-height: 1.6;
+  color: #ffffff;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0 0 14px 0;
+}
+
+.t-author {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Lato', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.t-dots {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.t-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid rgba(255,255,255,0.4);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.t-dot:hover { border-color: #ffffff; }
+
+.t-dot.active {
+  background-color: #f59e0b;
+  border-color: #f59e0b;
+  transform: scale(1.15);
+}
+
+/* ==========================================================================
+   Responsive Adaptations Media Queries
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .intro-inner, .trek-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .intro-slider-container {
+    max-width: 550px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 991px) {
+  .testimonials-inner { grid-template-columns: 1fr; gap: 32px; }
+  .testimonial-left { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 24px; }
+  .btn-contact { width: auto; padding: 12px 40px; }
+  .t-dots { justify-content: center; }
+  .testimonial-right { text-align: center; }
+}
+
+@media (max-width: 768px) {
+  .page-heading { font-size: 1.8rem; }
+  .section-heading { font-size: 1.4rem; }
+}

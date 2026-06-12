@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Destination;
 use App\Models\FooterLink;
 use App\Models\MenuItem;
 use App\Models\Setting;
@@ -42,10 +43,17 @@ class AppServiceProvider extends ServiceProvider
                 if (Schema::hasTable('settings')) {
                     $view->with('settings', Setting::pluck('value', 'key')->all());
                 }
+
+                if (Schema::hasTable('destinations')) {
+                    $view->with('trekkingDestinations', Destination::whereHas('treks', function ($query) {
+                        $query->where('is_active', true);
+                    })->orderBy('order')->get());
+                }
             } catch (Throwable) {
                 $view->with('menuItems', collect());
                 $view->with('footerLinks', collect());
                 $view->with('settings', []);
+                $view->with('trekkingDestinations', collect());
             }
 
             if (! file_exists(public_path('storage')) && file_exists(storage_path('app/public'))) {
