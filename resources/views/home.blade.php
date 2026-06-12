@@ -156,6 +156,24 @@
   </div>
 </section>
 
+<section class="home-contact-strip">
+  <div class="home-contact-strip-inner container-inner">
+    <div class="contact-strip-message">
+      {{ $settings['contact_strip_text'] ?? 'Do not hesitate to call us if you would like any information or if you can\'t find the offices:' }}
+    </div>
+    <div class="contact-strip-phones">
+      @if(!empty($settings['uddhav_phone']))
+        <span class="contact-person">Uddhav: <a href="tel:{{ str_replace([' ', '-', '(', ')'], '', $settings['uddhav_phone']) }}">{{ $settings['uddhav_phone'] }}</a></span>
+      @endif
+      @if(!empty($settings['uddhav_phone']) && !empty($settings['krishna_phone']))
+      @endif
+      @if(!empty($settings['krishna_phone']))
+        <span class="contact-person">Krishna Raj: <a href="tel:{{ str_replace([' ', '-', '(', ')'], '', $settings['krishna_phone']) }}">{{ $settings['krishna_phone'] }}</a></span>
+      @endif
+    </div>
+  </div>
+</section>
+
 @include('partials.footer')
 
 <script>

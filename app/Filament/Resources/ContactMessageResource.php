@@ -3,21 +3,24 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ContactMessageResource\Pages;
+use App\Mail\ContactReplyMail;
 use App\Models\ContactMessage;
 use BackedEnum;
-use UnitEnum;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Select;
+use Illuminate\Support\Facades\Mail;
+use UnitEnum;
 
 class ContactMessageResource extends Resource
 {
@@ -96,6 +99,20 @@ class ContactMessageResource extends Resource
             ])
             ->recordActions([
                 ViewAction::make(),
+                Action::make('reply')
+                    ->label('Reply')
+                    ->icon('heroicon-o-paper-airplane')
+                    ->form([
+                        RichEditor::make('email_body')
+                            ->label('Compose Email Reply')
+                            ->required(),
+                    ])
+                    ->action(function (ContactMessage $record, array $data) {
+                        Mail::to($record->email_address)
+                            ->queue(new ContactReplyMail($record, $data['email_body']));
+
+                        $record->update(['is_read' => true]);
+                    }),
                 Action::make('toggleRead')
                     ->label(fn (ContactMessage $record): string => $record->is_read ? 'Mark unread' : 'Mark read')
                     ->action(fn (ContactMessage $record) => $record->update(['is_read' => ! $record->is_read]))
@@ -103,6 +120,28 @@ class ContactMessageResource extends Resource
                 DeleteAction::make(),
             ])
             ->defaultSort('created_at', 'desc');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        if (! \Illuminate\Support\Facades\Schema::hasTable('contact_messages')) {
+            return null;
+        }
+
+        $count = ContactMessage::where('is_read', 0)->count();
+
+        return $count > 0 ? (string) $count : null;
+    }
+
+    public static function getNavigationBadgeColor(): string | array | null
+    {
+        if (! \Illuminate\Support\Facades\Schema::hasTable('contact_messages')) {
+            return null;
+        }
+
+        $count = ContactMessage::where('is_read', 0)->count();
+
+        return $count > 0 ? 'danger' : 'success';
     }
 
     public static function getPages(): array

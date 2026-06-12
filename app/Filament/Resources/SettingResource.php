@@ -13,6 +13,7 @@ use Filament\Schemas\Schema;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Group; // Correct namespace for layouts in newer versions
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
@@ -22,7 +23,7 @@ class SettingResource extends Resource
     protected static ?string $model = Setting::class;
 
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-cog';
-      protected static UnitEnum|string|null $navigationGroup = 'Website Configuration';
+    protected static UnitEnum|string|null $navigationGroup = 'Website Configuration';
     protected static ?string $navigationLabel = 'Site Settings';
     protected static ?string $pluralModelLabel = 'Site Settings';
     protected static ?string $modelLabel = 'Setting';
@@ -30,24 +31,38 @@ class SettingResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
-            ->schema([
+            ->components([
                 TextInput::make('key')
                     ->required()
+                    ->live() // Dynamically triggers schema updates on value alterations
                     ->disabledOn('edit') // Stops accidental alteration of system configuration keys
                     ->maxLength(255),
-                FileUpload::make('value')
-                    ->label('Value')
-                    ->disk('public')
-                    ->directory(fn (?Setting $record) => $record && $record->key === 'logo' ? 'logo' : 'settings')
-                    ->image()
-                    ->imagePreviewHeight('125')
-                    ->visible(fn (callable $get, ?Setting $record) => ($record && $record->key === 'logo') || $get('key') === 'logo')
-                    ->helperText('Upload a logo image only when key is "logo". For other settings, use the plain text setting editor.'),
-                Textarea::make('value')
-                    ->label('Value')
-                    ->rows(4)
-                    ->placeholder('Enter text, URL link, or paste iframe embed elements here...')
-                    ->visible(fn (callable $get, ?Setting $record) => ! (($record && $record->key === 'logo') || $get('key') === 'logo')),
+
+                // Group acts as a structural layout element to handle conditional schema switching safely
+                Group::make()
+                    ->components(function (callable $get, ?Setting $record) {
+                        $currentKey = $record?->key ?? $get('key');
+
+                        if ($currentKey === 'logo') {
+                            return [
+                                FileUpload::make('value')
+                                    ->label('Value')
+                                    ->disk('public')
+                                    ->directory('logo')
+                                    ->image()
+                                    ->imagePreviewHeight('125')
+                                    ->helperText('Upload a logo image only when key is "logo".'),
+                            ];
+                        }
+
+                        return [
+                            Textarea::make('value')
+                                ->label('Value')
+                                ->rows(4)
+                                ->placeholder('Enter text, URL link, or paste iframe embed elements here...')
+                                ->helperText('For other settings, use the plain text setting editor.'),
+                        ];
+                    }),
             ]);
     }
 

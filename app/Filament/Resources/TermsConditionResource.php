@@ -99,6 +99,17 @@ class TermsConditionResource extends Resource
             ->defaultSort('updated_at', 'desc');
     }
 
+    public static function getNavigationUrl(): string
+    {
+        $record = static::getModel()::query()->latest()->first();
+
+        if ($record) {
+            return static::getUrl('edit', ['record' => $record]);
+        }
+
+        return static::getUrl('create');
+    }
+
     public static function getPages(): array
     {
         return [

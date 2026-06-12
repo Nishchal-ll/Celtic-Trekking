@@ -2,8 +2,8 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\ContactMessage;
 use App\Models\Destination;
-use App\Models\Testimonial;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Illuminate\Support\Facades\DB;
@@ -19,33 +19,47 @@ class AgencyStatsOverview extends BaseWidget
 
     protected function getStats(): array
     {
-        // Safe database validation safeguards
-        $destinationsCount = Schema::hasTable('destinations') ? Destination::count() : 4;
-        
-        $unreadInquiries = Schema::hasTable('contact_messages') 
-            ? DB::table('contact_messages')->where('created_at', '>=', now()->subDays(7))->count() 
-            : 12;
+        $unreadMessages = Schema::hasTable('contact_messages')
+            ? ContactMessage::where('is_read', false)->count()
+            : 0;
 
-        $satisfactionRate = Schema::hasTable('testimonials')
-            ? number_format(Testimonial::avg('rating') ?? 4.9, 1)
-            : '4.9';
+        $inquiriesThisMonth = Schema::hasTable('contact_messages')
+            ? ContactMessage::whereYear('created_at', now()->year)
+                ->whereMonth('created_at', now()->month)
+                ->count()
+            : 0;
+
+        $mostPopularDestination = 'No destination data yet';
+
+        if (Schema::hasTable('contact_messages') && Schema::hasTable('destinations')) {
+            $popular = DB::table('contact_messages')
+                ->select('destination_id', DB::raw('count(*) as total'))
+                ->whereNotNull('destination_id')
+                ->groupBy('destination_id')
+                ->orderByDesc('total')
+                ->first();
+
+            if ($popular && $popular->destination_id) {
+                $destination = Destination::find($popular->destination_id);
+                $mostPopularDestination = $destination ? $destination->name : 'Unknown destination';
+            }
+        }
 
         return [
-            Stat::make('Active Destinations', $destinationsCount)
-                ->description('Tibet, Nepal, Morocco, Romania')
+            Stat::make('Total Unread Messages', $unreadMessages)
+                ->description('Messages waiting for reply')
+                ->descriptionIcon('heroicon-m-envelope-open')
+                ->color($unreadMessages > 0 ? 'danger' : 'success'),
+
+            Stat::make('Most Popular Destination', $mostPopularDestination)
+                ->description('Highest inquiry interest')
                 ->descriptionIcon('heroicon-m-map')
-                ->color('success'),
+                ->color('primary'),
 
-            Stat::make('New Inquiries (7 Days)', $unreadInquiries)
-                ->description('Requires operational response')
-                ->descriptionIcon('heroicon-m-envelope')
-                ->chart([7, 10, 5, 12, 18, 14, $unreadInquiries])
-                ->color($unreadInquiries > 15 ? 'danger' : 'warning'),
-
-            Stat::make('Client Satisfaction', $satisfactionRate . ' / 5.0')
-                ->description('Based on latest reviews')
-                ->descriptionIcon('heroicon-m-face-smile')
-                ->color('info'),
+            Stat::make('Inquiries This Month', $inquiriesThisMonth)
+                ->description('Customer contacts recorded this month')
+                ->descriptionIcon('heroicon-m-calendar')
+                ->color('warning'),
         ];
     }
 }

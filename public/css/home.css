@@ -348,6 +348,55 @@ body {
 /* ==========================================================================
    Media Query Adaptations
    ========================================================================== */
+.home-contact-strip {
+  padding: 24px 0;
+  background-color: #f9fafb;
+  color: #102a43;
+}
+
+.home-contact-strip-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.contact-strip-message {
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  font-weight: 400;
+  width: 100%;
+}
+
+.contact-strip-phones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.contact-person a {
+  color: #1d3d8c;
+  text-decoration: none;
+}
+
+.contact-person a:hover {
+  text-decoration: underline;
+}
+
+.phone-separator {
+  display: inline-block;
+  color: rgba(16, 42, 67, 0.6);
+  margin: 0 12px;
+}
+
 @media (max-width: 992px) {
   .destinations-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .banner-inner { flex-direction: column; gap: 30px; }
