@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\ResolvesMissingUploadFiles;
 
 class Destination extends Model
 {
     use HasFactory;
+    use ResolvesMissingUploadFiles;
 
     protected $fillable = [
         'name',
@@ -35,6 +37,21 @@ class Destination extends Model
         'is_featured' => 'boolean',
         'intro_gallery' => 'array',
     ];
+
+    public function getImageAttribute(?string $value): ?string
+    {
+        return $this->resolvePublicUploadPath($value);
+    }
+
+    public function getBannerImageAttribute(?string $value): ?string
+    {
+        return $this->resolvePublicUploadPath($value);
+    }
+
+    public function getIntroGalleryAttribute(mixed $value): array
+    {
+        return $this->resolvePublicUploadArray($value);
+    }
 
     public function treks()
     {

@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\ResolvesMissingUploadFiles;
 
 class Trek extends Model
 {
     use HasFactory;
+    use ResolvesMissingUploadFiles;
 
     protected $fillable = [
         'destination_id',
@@ -42,6 +44,11 @@ class Trek extends Model
         'is_fixed_departure' => 'boolean',
         'price' => 'decimal:2',
     ];
+
+    public function getImageAttribute(?string $value): ?string
+    {
+        return $this->resolvePublicUploadPath($value);
+    }
 
     public function destination()
     {

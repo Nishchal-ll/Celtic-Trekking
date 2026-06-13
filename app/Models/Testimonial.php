@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\ResolvesMissingUploadFiles;
 
 class Testimonial extends Model
 {
     use HasFactory;
+    use ResolvesMissingUploadFiles;
 
     protected $fillable = [
         'trek_id',
@@ -25,6 +27,11 @@ class Testimonial extends Model
         'trek_date' => 'date',
         'is_approved' => 'boolean',
     ];
+
+    public function getAvatarAttribute(?string $value): ?string
+    {
+        return $this->resolvePublicUploadPath($value);
+    }
 
     public function trek()
     {
